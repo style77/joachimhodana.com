@@ -3,6 +3,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import Background from "./containers/background/background";
 import Taskbar from "./components/taskbar";
 import { SidePane } from "./components/sidepane";
+import { Calendar } from "./components/calendar";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
@@ -51,7 +52,6 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
 }
 
 function App() {
-
   return (
     <div className="App">
       <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -59,6 +59,7 @@ function App() {
           <Background />
           <div className="desktop" data-menu="desk">
             <SidePane />
+            <Calendar />
           </div>
           <Taskbar />
         </div>
