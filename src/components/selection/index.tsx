@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react';
 import './selection.scss'
 
+type SelectionBox = {
+    startX: number;
+    startY: number;
+    endX: number;
+    endY: number;
+};
+
 export const Selection = () => {
     const [selecting, setSelecting] = useState(false);
-    const [selectionBox, setSelectionBox] = useState({});
+    const [selectionBox, setSelectionBox] = useState<SelectionBox | {}>({});
 
     useEffect(() => {
         const handleMouseUpDocument = () => {
