@@ -1,3 +1,14 @@
+
+const getSystemTheme = () => {
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const mode = darkMode ? "dark" : "light";
+
+    document.body.dataset.theme = mode;
+
+    return mode;
+}
+
 const initialState = {
     quicks: [
         {
@@ -27,9 +38,9 @@ const initialState = {
         },
         {
             ui: true,
-            src: "sun",
+            src: getSystemTheme() === "dark" ? "moon" : "sun",
             name: "Theme",
-            state: false,
+            state: getSystemTheme() === "dark" ? true : false,
             action: "changeTheme",
         },
         {
@@ -40,8 +51,7 @@ const initialState = {
         },
     ],
     hide: true,
-    banhide: true,
-    calhide: true,
+    calendarHide: true,
 
     brightness: 100,
 };
@@ -101,18 +111,14 @@ export default function sidepaneReducer(state = initialState, action) {
         return { ...state, quicks: updatedQuicks };
     } else if (action.type == "SET_BRIGHTNESS") {
         return { ...state, brightness: action.payload };
-    } else if (action.type == "TOGGLE_BAND") {
-        return { ...state, banhide: !state.banhide };
-    } else if (action.type == "HIDE_BAND") {
-        return { ...state, banhide: true };
     } else if (action.type == "TOGGLE_SIDEPANE") {
-        return { ...state, hide: !state.hide };
+        return { ...state, calendarHide: true, hide: !state.hide };
     } else if (action.type == "HIDE_SIDEPANE") {
         return { ...state, hide: true };
-    } else if (action.type == "TOOGLE_CAL") {
-        return { ...state, calhide: !state.calhide };
-    } else if (action.type == "HIDE_CAL") {
-        return { ...state, calhide: true };
+    } else if (action.type == "TOGGLE_CALENDAR") {
+        return { ...state, calendarHide: !state.calendarHide, hide: true };
+    } else if (action.type == "HIDE_CALENDAR") {
+        return { ...state, calendarHide: true };
     } else {
         return state;
     }
