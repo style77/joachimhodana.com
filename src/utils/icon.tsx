@@ -9,6 +9,7 @@ type IconProps = {
     onClick?: any;
     active?: boolean;
     open?: boolean;
+    clicked?: boolean;
 
     className?: string;
     ui?: boolean;  // Use UI icons (from icon/ui)
@@ -22,11 +23,15 @@ type IconProps = {
 }
 
 export const Icon = (props: IconProps) => {
+
+    const prtclk = !props.clicked ? "prtclk" : "";
+
     if (props.fafa) {
         return (
             <div
-                className={`uicon prtclk ${props.className || ""}`}
+                className={`uicon ${prtclk} ${props.className || ""}`}
                 onClick={props.onClick}
+                data-click={props.clicked}
             >
                 <FontAwesomeIcon
                     style={{
@@ -44,7 +49,7 @@ export const Icon = (props: IconProps) => {
         var CustomIcon = (AllIcons as any)[props.src];
         return (
           <div
-            className={`uicon prtclk ${props.className || ""}`}
+            className={`uicon ${prtclk} ${props.className || ""}`}
             onClick={props.onClick}
           >
             <CustomIcon
@@ -59,7 +64,7 @@ export const Icon = (props: IconProps) => {
         var src = `icon/${props.ui ? "ui/" : ""}${props.src}.png`;
         return (
             <div
-                className={`uicon ${props.className || ""} prtclk`}
+                className={`uicon ${props.className || ""} ${prtclk}`}
                 data-active={props.active}
                 data-open={props.open}
                 onClick={props.onClick}
@@ -68,12 +73,14 @@ export const Icon = (props: IconProps) => {
                     <div
                         style={{ width: props.width, height: props.width }}
                         data-invert={props.invert}
+                        data-click={props.clicked}
                     >
                         <img
                             width={props.width}
                             height={props.height}
                             src={src}
                             data-invert={props.invert}
+                            data-click={props.clicked}
                         />
                     </div>
                 ) : (
@@ -82,6 +89,7 @@ export const Icon = (props: IconProps) => {
                         height={props.height}
                         src={src}
                         data-invert={props.invert}
+                        data-click={props.clicked}
                     />
                 )}
             </div>

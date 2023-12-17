@@ -28,12 +28,13 @@ const Taskbar = () => {
             <div className="taskcont">
                 <div className="tasksCont" data-menu="task" data-side={taskbarState.align}>
                     <div className="tsbar">
-                        <Icon className="tsIcon" src="home" width={24} click="STARTOGG" />
+                        <Icon className="tsIcon" src="home" width={24} clicked={true} />
                         {taskbarState.showSearch ? (
                             <Icon
                                 className="tsIcon searchIcon"
                                 src="taskSearch"
                                 allIcons
+                                clicked={true}
                             />
                         ) : null}
                         {taskbarState.showWidgets ? (
@@ -49,7 +50,6 @@ const Taskbar = () => {
                             return (
                                 <div
                                     key={i}
-                                    // onMouseOver={(!isActive && !isHidden && showPrev) || null}
                                     value={task.icon}
                                 >
                                     <Icon
@@ -59,6 +59,7 @@ const Taskbar = () => {
                                         active={isActive}
                                         open={isOpen}
                                         src={task.icon}
+                                        clicked={true}
                                     />
                                 </div>
                             );
