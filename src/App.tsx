@@ -2,6 +2,7 @@ import { MouseEventHandler } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import Background from "./containers/background/background";
 import Taskbar from "./components/taskbar";
+import { SidePane } from "./components/sidepane";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
@@ -57,6 +58,7 @@ function App() {
         <div className="appwrap">
           <Background />
           <div className="desktop" data-menu="desk">
+            <SidePane />
           </div>
           <Taskbar />
         </div>
