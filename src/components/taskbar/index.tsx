@@ -87,6 +87,7 @@ const Taskbar = () => {
 
                     <div
                         className="taskDate m-1 handcr prtclk rounded hvlight"
+                        onClick={() => dispatch({ type: "TOGGLE_CALENDAR" })}
                     >
                         <div>
                             {time.toLocaleTimeString("en-US", {
