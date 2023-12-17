@@ -1,27 +1,30 @@
-const apps = {
+type Application = {
+    name: string;
+    icon: string;
+    type: string;
+    id: string;
+    window: {
+        title: string;
+    };
+}
+
+const apps: {
+    [key: string]: Application;
+} = {
     "Settings": {
         "name": "Settings",
         "icon": "settings",
         "type": "app",
-        "id": "settings",
+        "id": "Settings",
         "window": {
             "title": "Settings",
-        }
-    },
-    "Search": {
-        "name": "Search",
-        "icon": "search",
-        "type": "search",
-        "id": "search",
-        "window": {
-            "title": "Search",
         }
     },
     "FileExplorer": {
         "name": "File Explorer",
         "icon": "explorer",
         "type": "app",
-        "id": "file-explorer",
+        "id": "FileExplorer",
         "window": {
             "title": "File Explorer",
         }
@@ -30,7 +33,7 @@ const apps = {
         "name": "Browser",
         "icon": "brave",
         "type": "app",
-        "id": "browser",
+        "id": "Browser",
         "window": {
             "title": "Browser",
         },
@@ -39,7 +42,7 @@ const apps = {
         "name": "Visual Studio Code",
         "icon": "vscode",
         "type": "app",
-        "id": "vscode",
+        "id": "VisualStudioCode",
         "window": {
             "title": "Visual Studio Code",
         },
@@ -48,7 +51,7 @@ const apps = {
         "name": "Terminal",
         "icon": "terminal",
         "type": "app",
-        "id": "terminal",
+        "id": "Terminal",
         "window": {
             "title": "Terminal",
         },
@@ -57,7 +60,7 @@ const apps = {
         "name": "Calculator",
         "icon": "calculator",
         "type": "app",
-        "id": "calculator",
+        "id": "Calculator",
         "window": {
             "title": "Calculator",
         },
@@ -66,7 +69,7 @@ const apps = {
         "name": "Github",
         "icon": "github",
         "type": "app",
-        "id": "github",
+        "id": "Github",
         "window": {
             "title": "Github",
         },
@@ -75,7 +78,7 @@ const apps = {
         "name": "League of Legends",
         "icon": "leagueoflegends",
         "type": "app",
-        "id": "leagueoflegends",
+        "id": "LeagueOfLegends",
         "window": {
             "title": "League of Legends",
         },
@@ -84,7 +87,7 @@ const apps = {
         "name": "Discord",
         "icon": "discord",
         "type": "app",
-        "id": "discord",
+        "id": "Discord",
         "window": {
             "title": "Discord",
         },
@@ -93,7 +96,6 @@ const apps = {
 
 var { taskbarApps, desktopApps } = {
     taskbarApps: [
-        apps.Search,
         apps.Browser,
         apps.Discord,
         apps.Github,
