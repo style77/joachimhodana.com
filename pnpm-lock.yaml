@@ -20,6 +20,9 @@ dependencies:
   '@vitejs/plugin-react':
     specifier: ^4.2.1
     version: 4.2.1(vite@5.0.10)
+  dycalendarjs:
+    specifier: ^1.2.1
+    version: 1.2.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -1336,6 +1339,10 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dycalendarjs@1.2.1:
+    resolution: {integrity: sha512-21wSEM4lsPr9zP0PUVUyd3CYnMNRMXs+qrqqSMykHcVscZzzfOWqc/K8BWPhRu1iBzHsB0vJYt/vFKimaqWKVQ==}
+    dev: false
 
   /electron-to-chromium@1.4.614:
     resolution: {integrity: sha512-X4ze/9Sc3QWs6h92yerwqv7aB/uU8vCjZcrMjA8N9R1pjMFRe44dLsck5FzLilOYvcXuDn93B+bpGYyufc70gQ==}
