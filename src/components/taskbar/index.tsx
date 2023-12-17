@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./taskbar.scss";
 import { Icon } from "../../utils/icon";
-import { dispatchAction } from "../../actions";
 
 const Taskbar = () => {
     const taskbarState = useSelector((state) => {
@@ -30,23 +29,23 @@ const Taskbar = () => {
                 <div className="tasksCont" data-menu="task" data-side={taskbarState.align}>
                     <div className="tsbar">
                         <Icon className="tsIcon" src="home" width={24} click="STARTOGG" />
-                        {taskbarState.search ? (
+                        {taskbarState.showSearch ? (
                             <Icon
-                                click="STARTSRC"
                                 className="tsIcon searchIcon"
-                                icon="taskSearch"
+                                src="taskSearch"
+                                allIcons
                             />
                         ) : null}
-                        {taskbarState.widgets ? (
+                        {taskbarState.showWidgets ? (
                             <Icon
                                 className="tsIcon widget"
                                 src="widget"
                                 width={24}
-                                click="WIDGTOGG"
                             />
                         ) : null}
                         {taskbarState.apps.map((task, i) => {
                             var isActive = task.id === applicationsState.activeApplication;
+                            var isOpen = applicationsState.applications.find((app) => app.id === task.id) !== undefined;
                             return (
                                 <div
                                     key={i}
@@ -56,10 +55,9 @@ const Taskbar = () => {
                                     <Icon
                                         className="tsIcon"
                                         width={24}
-                                        open={isActive ? true : null}
-                                        onClick={() => dispatch({ TYPE: "SET_ACTIVE_APPLICATION", payload: task.id })}
+                                        onClick={() => dispatch({ type: "SET_ACTIVE_APPLICATION", payload: task.id })}
                                         active={isActive}
-                                        payload="togg"
+                                        open={isOpen}
                                         src={task.icon}
                                     />
                                 </div>
@@ -70,15 +68,12 @@ const Taskbar = () => {
                 <div className="taskright">
                     <div
                         className="px-2 prtclk handcr hvlight flex"
-                        // onClick={clickDispatch}
-                        data-action="BANDTOGG"
                     >
                         <Icon fafa="faChevronUp" width={10} />
                     </div>
                     <div
                         className="prtclk handcr my-1 px-1 hvlight flex rounded"
-                        // onClick={clickDispatch}
-                        data-action="PANETOGG"
+                        onClick={() => dispatch({ type: "TOGGLE_SIDEPANE" })}
                     >
                         <Icon className="taskIcon" src="wifi" ui width={16} />
                         <Icon
@@ -92,8 +87,6 @@ const Taskbar = () => {
 
                     <div
                         className="taskDate m-1 handcr prtclk rounded hvlight"
-                        // onClick={clickDispatch}
-                        data-action="CALNTOGG"
                     >
                         <div>
                             {time.toLocaleTimeString("en-US", {
@@ -109,7 +102,7 @@ const Taskbar = () => {
                             })}
                         </div>
                     </div>
-                    <Icon className="graybd my-4" ui width={6} click="SHOWDSK" pr />
+                    <div className="graybd mr-1 my-4 w-2" />
                 </div>
             </div>
         </div>
