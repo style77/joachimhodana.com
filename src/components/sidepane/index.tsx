@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../../utils/icon";
 // import Battery from "../shared/Battery";
-// import "./searchpane.scss";
-import "./sidepane.scss";
-// import "./startmenu.scss";
-
-// export * from "./start";
-// export * from "./widget";
+import "../search/searchpane.scss";
+import "../sidepane/sidepane.scss";
+import "../start/startmenu.scss";
 
 export const SidePane = () => {
     const sidepane = useSelector((state) => state.sidepane);
