@@ -1,0 +1,12 @@
+.selection {
+    position: relative;
+    min-width: 100vw;
+    min-height: 100vh;
+
+    .selection-box {
+        position: absolute;
+        border: 1px solid #0078D7;
+        background: rgba(0, 120, 215, 0.2);
+        border-radius: 2px;
+    }
+}

@@ -4,6 +4,7 @@ import Background from "./containers/background/background";
 import Taskbar from "./components/taskbar";
 import { SidePane } from "./components/sidepane";
 import { Calendar } from "./components/calendar";
+import { Selection } from "./components/selection";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
@@ -58,6 +59,7 @@ function App() {
         <div className="appwrap">
           <Background />
           <div className="desktop" data-menu="desk">
+            <Selection />
             <SidePane />
             <Calendar />
           </div>
