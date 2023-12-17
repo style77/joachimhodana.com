@@ -15,6 +15,16 @@ export default function taskbarReducer(state = initialState, action) {
                 ...state,
                 apps: action.payload,
             };
+        case 'SET_VOLUME':
+            if (action.payload < 0) {
+                action.payload = 0;
+            } else if (action.payload > 3) {
+                action.payload = 3;
+            }
+            return {
+                ...state,
+                volume: action.payload,
+            };
         default:
             return state;
     }
