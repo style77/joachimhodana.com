@@ -89,10 +89,8 @@
       gap: 2rem;
   
       .qkCont {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
   
         .qkGrp {
           display: flex;
