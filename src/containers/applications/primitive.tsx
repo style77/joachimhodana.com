@@ -1,0 +1,5 @@
+const PrimitiveApp = () => {
+    return (
+        
+    )
+}
