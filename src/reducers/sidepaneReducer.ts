@@ -26,7 +26,7 @@ const initialState = {
         {
             ui: true,
             src: "airplane",
-            name: "Flight Mode",
+            name: "Airplane Mode",
             state: false,
             action: "flightMode",
         },
@@ -43,12 +43,6 @@ const initialState = {
             state: getSystemTheme() === "dark" ? true : false,
             action: "changeTheme",
         },
-        {
-            ui: true,
-            src: "nightlight",
-            name: "Night Light",
-            state: false,
-        },
     ],
     hide: true,
     calendarHide: true,
@@ -62,18 +56,18 @@ export default function sidepaneReducer(state = initialState, action) {
         let updatedQuicks = state.quicks;
         let updatedBrightness = state.brightness;
 
-        if (action.payload === "Flight Mode") {
+        if (action.payload === "Airplane Mode") {
             updatedQuicks = state.quicks.map(quick => {
                 if (quick.name === "WiFi" || quick.name === "Bluetooth") {
                     return { ...quick, state: false };
-                } else if (quick.name === "Flight Mode") {
+                } else if (quick.name === "Airplane Mode") {
                     return { ...quick, state: !quick.state };
                 }
                 return quick;
             });
         } else if (action.payload === "WiFi" || action.payload === "Bluetooth") {
             updatedQuicks = state.quicks.map(quick => {
-                if (quick.name === "Flight Mode") {
+                if (quick.name === "Airplane Mode") {
                     return { ...quick, state: false };
                 } else if (quick.name === action.payload) {
                     return { ...quick, state: !quick.state };
