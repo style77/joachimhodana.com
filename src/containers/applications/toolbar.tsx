@@ -164,7 +164,7 @@ export const ToolBar = (props) => {
                 src={props.size == "full" ? "maximize" : "maxmin"}
                 onClick={() => dispatch({type: "RESIZE_APPLICATION", payload: {
                   id: props.app.id,
-                  size: props.size == "full" ? "cstm" : "full"
+                  size: props.size == "full" ? "mini" : "full"
                 }})}
               />
             </div>
