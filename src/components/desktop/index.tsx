@@ -12,7 +12,7 @@ export const Desktop = () => {
         <div className="desktopCont">
           {desktopState.applications.map((app, i) => {
               return (
-                <div key={i} className="dskApp" tabIndex={0}>
+                <div key={i} className="dskApp" tabIndex={i}>
                   <Icon
                     clicked={true}
                     className="dskIcon"
