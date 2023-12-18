@@ -5,10 +5,11 @@ import { Icon } from "../../utils/icon";
 import "../search/searchpane.scss";
 import "../sidepane/sidepane.scss";
 import "../start/startmenu.scss";
+import { RootState } from "../../reducers";
 
 export const SidePane = () => {
-    const sidepane = useSelector((state) => state.sidepane);
-    const tasks = useSelector((state) => state.taskbar);
+    const sidepane = useSelector((state: RootState) => state.sidepane);
+    const tasks = useSelector((state: RootState) => state.taskbar);
 
     const dispatch = useDispatch();
 

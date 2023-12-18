@@ -6,9 +6,10 @@ import "../sidepane/sidepane.scss";
 import "../start/startmenu.scss";
 import "./desktop.scss";
 import { Application } from "../../utils/defaults";
+import { RootState } from "../../reducers";
 
 export const Desktop = () => {
-    const desktopState = useSelector((state) => state.desktop)
+    const desktopState = useSelector((state: RootState) => state.desktop)
 
     const dispatch = useDispatch()
 

@@ -3,12 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 
 import "./taskbar.scss";
 import { Icon } from "../../utils/icon";
+import { RootState } from "../../reducers";
 
 const Taskbar = () => {
-    const taskbarState = useSelector((state) => {
+    const taskbarState = useSelector((state: RootState) => {
         return state.taskbar;
     });
-    const applicationsState = useSelector((state) => {
+    const applicationsState = useSelector((state: RootState) => {
         return state.applications;
     });
 

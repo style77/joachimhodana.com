@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Icon } from "../../../utils/icon";
 import { LazyComponent } from "../../../utils/lazy";
 import { ToolBar } from "../toolbar";
+import { RootState } from "../../../reducers";
 
 type URL = {
     protocol: string;
@@ -21,7 +22,7 @@ const HOME_URL = {
 };
 
 export const Browser = () => {
-    const applicationsState = useSelector((state) => state.applications);
+    const applicationsState = useSelector((state: RootState) => state.applications);
     const wnapp = applicationsState.applications.find((app) => app.id === "Browser");
 
     const [url, setUrl] = useState<URL>(HOME_URL);

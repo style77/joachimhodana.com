@@ -9,6 +9,7 @@ import { Desktop } from "./components/desktop";
 import * as Applications from "./containers/applications";
 import { useSelector } from "react-redux";
 import { Application } from "./utils/defaults";
+import { RootState } from "./reducers";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
@@ -69,7 +70,7 @@ interface ApplicationComponents {
 
 function App() {
 
-  const applicationsState = useSelector((state) => state.applications);
+  const applicationsState = useSelector((state: RootState) => state.applications);
 
   const [selecting, setSelecting] = useState(false);
   const [selectionBox, setSelectionBox] = useState<SelectionBox | null>(null);

@@ -5,6 +5,8 @@ export type Application = {
     id: string;
     window: {
         title: string;
+        size?: string;
+        max?: boolean
     };
 }
 

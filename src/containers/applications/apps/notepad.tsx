@@ -1,20 +1,21 @@
 import { useSelector } from "react-redux";
 import { ToolBar } from "../toolbar";
+import { RootState } from "../../../reducers";
+import { Application } from "../../../utils/defaults";
+
+interface WnApp extends Application {
+    content: string;
+}
 
 export const Notepad = () => {
-    const applicationsState = useSelector((state) => state.applications);
-    const wnapp = applicationsState.applications.find((app) => app.id === "Notepad");
+    const applicationsState = useSelector((state: RootState) => state.applications);
+    const wnapp = applicationsState.applications.find((app) => app.id === "Notepad")! as unknown as WnApp;
 
     return (
         <div
             className="notepad floatTab dpShad"
             data-size={wnapp.window.size}
             data-max={wnapp.window.max}
-            style={{
-                ...(wnapp.window.size == "cstm" ? wnapp.window.dim : null),
-                zIndex: wnapp.window.z,
-            }}
-            data-hide={wnapp.hide}
             id={wnapp.icon + "App"}
         >
             <ToolBar

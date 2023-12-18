@@ -8,10 +8,11 @@ import "../start/startmenu.scss";
 import "./calendar.scss"
 
 import "dycalendarjs/js/dycalendar.min.js"
+import { RootState } from "../../reducers";
 
 
 export const Calendar = () => {
-    const sidepane = useSelector((state) => state.sidepane);
+    const sidepane = useSelector((state: RootState) => state.sidepane);
     const [loaded, setLoad] = useState(false);
   
     const [collapse, setCollapse] = useState("");
