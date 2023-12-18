@@ -2,7 +2,7 @@ const initialState = {
     image: 'default.jpg',
 };
 
-export default function wallpaperReducer(state = initialState, action) {
+export default function wallpaperReducer(state = initialState, action: Action) {
     switch (action.type) {
         case 'SET_WALLPAPER':
             return {

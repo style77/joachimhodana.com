@@ -51,7 +51,7 @@ const initialState = {
 };
 
 
-export default function sidepaneReducer(state = initialState, action) {
+export default function sidepaneReducer(state = initialState, action: Action) {
     switch (action.type) {
         case "TOGGLE_QUICKS": {
             let updatedQuicks = state.quicks;

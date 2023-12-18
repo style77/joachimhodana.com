@@ -26,11 +26,6 @@ const initialState: {
     activeApplication: null,
 };
 
-type Action = {
-    type: string;
-    payload: any;
-};
-
 export default function applicationsReducer(state = initialState, action: Action) {
     switch (action.type) { 
         case 'SET_ACTIVE_APPLICATION':

@@ -8,7 +8,7 @@ const initialState = {
     volume: 3,
 };
 
-export default function taskbarReducer(state = initialState, action) {
+export default function taskbarReducer(state = initialState, action: Action) {
     switch (action.type) {
         case 'SET_TASKBAR_APPS':
             return {
