@@ -4,6 +4,7 @@ import wallpaperReducer from './wallpaperReducer';
 import taskbarReducer from './taskbarReducer';
 import sidepaneReducer from './sidepaneReducer';
 import applicationsReducer from './applicationsReducer';
+import desktopReducer from './desktopReducer';
 
 const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
         wallpaper: wallpaperReducer,
         taskbar: taskbarReducer,
         sidepane: sidepaneReducer,
+        desktop: desktopReducer,
     }
 });
 
