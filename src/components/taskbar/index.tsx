@@ -50,8 +50,8 @@ const Taskbar = () => {
                                 ({ id }) => !taskbarState.applications.some((app) => app.id === id)
                             ),
                         ].map((task, i) => {
-                            var isActive = task.id === applicationsState.activeApplication;
-                            var isOpen = applicationsState.applications.find((app) => app.id === task.id) !== undefined;
+                            const isActive = task.id === applicationsState.activeApplication;
+                            const isOpen = applicationsState.applications.find((app) => app.id === task.id) !== undefined;
                             return (
                                 <div
                                     key={i}

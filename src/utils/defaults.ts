@@ -109,7 +109,7 @@ export type File = {
     content: string;
 } & Application;
 
-var files: {
+const files: {
     [key: string]: File;
 } = {
     "Hello": {
@@ -130,7 +130,7 @@ const appsAndFiles = {
     ...files,
 };
 
-var { taskbarApps, desktopApps } = {
+const { taskbarApps, desktopApps } = {
     taskbarApps: [
         apps.Browser,
         apps.Discord,

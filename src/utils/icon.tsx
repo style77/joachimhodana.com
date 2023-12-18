@@ -48,7 +48,7 @@ export const Icon = (props: IconProps) => {
             </div>
         );
     } else if (props.allIcons && props.src) {
-        var CustomIcon = (AllIcons as any)[props.src];
+        const CustomIcon = (AllIcons as any)[props.src];
         return (
             <div
                 className={`uicon ${prtclk} ${props.className || ""}`}
@@ -63,7 +63,7 @@ export const Icon = (props: IconProps) => {
             </div>
         );
     } else {
-        var src = `icon/${props.ui ? "ui/" : ""}${props.src}.png`;
+        let src = `icon/${props.ui ? "ui/" : ""}${props.src}.png`;
         if (props.ext != null && props.src && props.src.includes("http")) {
             src = props.src;
         }
