@@ -6,7 +6,7 @@ import * as AllIcons from "./icons";
 type IconProps = {
     src?: string;
 
-    onClick?: any;
+    onClick?: () => void;
     active?: boolean;
     open?: boolean;
     clicked?: boolean;
@@ -15,6 +15,7 @@ type IconProps = {
     ui?: boolean;  // Use UI icons (from icon/ui)
     fafa?: string;  // FontAwesome Icon
     allIcons?: boolean;  // Use all icons (from icon)
+    ext?: boolean;  // Use external icons (from web)
 
     invert?: boolean;
 
@@ -39,6 +40,7 @@ export const Icon = (props: IconProps) => {
                         height: props.height || props.width,
                     }}
                     data-invert={props.invert}
+                    data-click={props.clicked}
                     icon={
                         (FaIcons as any)[props.fafa]
                     }
@@ -48,20 +50,23 @@ export const Icon = (props: IconProps) => {
     } else if (props.allIcons && props.src) {
         var CustomIcon = (AllIcons as any)[props.src];
         return (
-          <div
-            className={`uicon ${prtclk} ${props.className || ""}`}
-            onClick={props.onClick}
-          >
-            <CustomIcon
-              style={{
-                width: props.width,
-                height: props.height || props.width,
-              }}
-            />
-          </div>
+            <div
+                className={`uicon ${prtclk} ${props.className || ""}`}
+                onClick={props.onClick}
+            >
+                <CustomIcon
+                    style={{
+                        width: props.width,
+                        height: props.height || props.width,
+                    }}
+                />
+            </div>
         );
-      } else {
+    } else {
         var src = `icon/${props.ui ? "ui/" : ""}${props.src}.png`;
+        if (props.ext != null && props.src && props.src.includes("http")) {
+            src = props.src;
+        }
         return (
             <div
                 className={`uicon ${props.className || ""} ${prtclk}`}
