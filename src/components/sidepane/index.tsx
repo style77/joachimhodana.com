@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../../utils/icon";
 // import Battery from "../shared/Battery";
@@ -18,6 +18,8 @@ export const SidePane = () => {
     const setSliderColor = (vol: number, slider: string) => {
         let sliderObject: HTMLInputElement | undefined;
 
+        let payload = 3;
+        
         switch (slider) {
             case "brightness":
                 sliderObject = brightnessSlider;
@@ -26,7 +28,6 @@ export const SidePane = () => {
 
                 break;
             case "volume":
-                let payload = 3;
                 if (vol < 70) {
                     payload = 2
                 } 
@@ -55,7 +56,7 @@ export const SidePane = () => {
             brightnessSlider.value = sidepane.brightness;
             setSliderColor(sidepane.brightness, "brightness");
         }
-    }, [sidepane.brightness])
+    }, [sidepane.brightness, brightnessSlider])  // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div

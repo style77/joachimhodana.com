@@ -32,7 +32,7 @@ export const Calendar = () => {
           highlighttoday: true,
         });
       }
-    });
+    }, [loaded]);
   
     return (
       <div

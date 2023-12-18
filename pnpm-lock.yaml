@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@fortawesome/fontawesome-svg-core':
+    specifier: ^6.5.1
+    version: 6.5.1
   '@fortawesome/free-regular-svg-icons':
     specifier: ^6.5.1
     version: 6.5.1

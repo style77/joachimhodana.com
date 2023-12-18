@@ -8,6 +8,7 @@ import { Desktop } from "./components/desktop";
 
 import * as Applications from "./containers/applications";
 import { useSelector } from "react-redux";
+import { Application } from "./utils/defaults";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
@@ -55,12 +56,23 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
   );
 }
 
+type SelectionBox = {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+}
+
+interface ApplicationComponents {
+  [key: string]: React.ComponentType<any>; // eslint-disable-line
+}
+
 function App() {
 
   const applicationsState = useSelector((state) => state.applications);
 
   const [selecting, setSelecting] = useState(false);
-  const [selectionBox, setSelectionBox] = useState({});
+  const [selectionBox, setSelectionBox] = useState<SelectionBox | null>(null);
 
   useEffect(() => {
     const handleMouseUpDocument = () => {
@@ -69,11 +81,11 @@ function App() {
       }
     };
 
-    const handleMouseMoveDocument = (e) => {
-      if (selecting) {
+    const handleMouseMoveDocument = (e: MouseEvent) => {
+      if (selectionBox && selecting) {
         const { clientX, clientY } = e;
         setSelectionBox((prevBox) => ({
-          ...prevBox,
+          ...prevBox!,
           endX: clientX,
           endY: clientY,
         }));
@@ -87,7 +99,7 @@ function App() {
       document.removeEventListener('mouseup', handleMouseUpDocument);
       document.removeEventListener('mousemove', handleMouseMoveDocument);
     };
-  }, [selecting]);
+  }, [selecting, selectionBox]);
 
   const handleMouseDown = (e) => {
     setSelecting(true);
@@ -113,7 +125,7 @@ function App() {
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
           >
-            {selecting && !applicationsState.activeApplication && (
+            {selecting && selectionBox && !applicationsState.activeApplication && (
               <div
                 className="selectionBox"
                 style={{
@@ -125,8 +137,8 @@ function App() {
               />
             )}
             <Desktop />
-            {applicationsState.applications.map((key, idx) => {
-              const WinApp = (Applications as any)[key.name.replace(/ /g, '')];
+            {applicationsState.applications.map((key: Application, idx: number) => {
+              const WinApp = (Applications as ApplicationComponents)[key.name.replace(/ /g, '')];
               return <WinApp key={idx} />;
             })}
             <SidePane />
