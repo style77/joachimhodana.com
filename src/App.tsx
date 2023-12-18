@@ -126,7 +126,7 @@ function App() {
             )}
             <Desktop />
             {applicationsState.applications.map((key, idx) => {
-              var WinApp = (Applications as any)[key.name];
+              var WinApp = (Applications as any)[key.name.replace(/ /g, '')];
               return <WinApp key={idx} />;
             })}
             <SidePane />
