@@ -7,7 +7,7 @@ on:
         branches: [master, develop]
 
 jobs:
-    build:
+    cache-and-install-pnpm:
         runs-on: ubuntu-latest
 
         strategy:
@@ -15,15 +15,43 @@ jobs:
                 node-version: [14.15.x]
 
         steps:
-            - uses: actions/checkout@v2
+            - name: Checkout
+              uses: actions/checkout@v2
+
             - name: Use Node.js ${{ matrix.node-version }}
-              uses: actions/setup-node@v2
+              uses: actions/setup-node@v3
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'pnpm'
+                  
+            - name: Install pnpm
+              uses: pnpm/action-setup@v2
+              with:
+                version: 8
+                run_install: false
 
-            - name: Check linting
-              run: pnpm run lint
+            - name: Get pnpm store directory
+              shell: bash
+              run: |
+                echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-            - name: Build
-              run: pnpm run build
+                - uses: actions/cache@v3
+                name: Setup pnpm cache
+                with:
+                  path: ${{ env.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                    ${{ runner.os }}-pnpm-store-
+
+            - name: Install dependencies
+              run: pnpm install
+
+    build:
+      needs: cache-and-install-pnpm
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Check linting
+          run: pnpm run lint
+
+        - name: Build
+          run: pnpm run build
