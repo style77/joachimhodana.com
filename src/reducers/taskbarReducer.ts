@@ -4,7 +4,7 @@ const initialState = {
     apps: taskbarApps,
     align: 'center',
     showSearch: true,
-    showWidgets: true,
+    showWidgets: false, // Who tf uses that
     volume: 3,
 };
 
