@@ -9,4 +9,12 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
+  rules: {
+    '@typescript-eslint/ban-ts-comment': [
+      'warn',
+      {
+        'ts-ignore': 'allow-with-description',
+      },
+    ]
+  }
 }
