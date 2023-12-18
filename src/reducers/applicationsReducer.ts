@@ -2,14 +2,8 @@ import { apps } from "../utils/defaults";
 
 type Window = {
     title: string;
-    position: {
-        x: number;
-        y: number;
-    };
-    size: {
-        width: number;
-        height: number;
-    };
+    size: string;
+    max: boolean;
 }
 
 type Application = {
@@ -40,14 +34,8 @@ export default function applicationsReducer(state = initialState, action: Action
                     type: apps[action.payload].type,
                     window: {
                         title: apps[action.payload].window.title,
-                        position: {
-                            x: 0,
-                            y: 0,
-                        },
-                        size: {
-                            width: 240,
-                            height: 240,
-                        },
+                        size: "full",
+                        max: true,
                     },
                 }
                 return {
@@ -60,6 +48,64 @@ export default function applicationsReducer(state = initialState, action: Action
             return {
                 ...state,
                 activeApplication: action.payload,
+                applications: state.applications.map((application) => {
+                    if (application.id === action.payload) {
+                        return {
+                            ...application,
+                            window: {
+                                ...application.window,
+                                max: true,
+                            },
+                        };
+                    }
+                    return application;
+                }),
+            };
+        case 'CLOSE_APPLICATION':
+            if (state.activeApplication === action.payload) {
+                return {
+                    ...state,
+                    activeApplication: null,
+                    applications: state.applications.filter((application) => application.id !== action.payload),
+                };
+            }
+            return {
+                ...state,
+                applications: state.applications.filter((application) => application.id !== action.payload),
+            };
+        case 'RESIZE_APPLICATION':
+            return {
+                ...state,
+                applications: state.applications.map((application) => {
+                    if (application.id === action.payload.id) {
+                        return {
+                            ...application,
+                            window: {
+                                ...application.window,
+                                max: true,
+                                size: action.payload.size,
+                            },
+                        };
+                    }
+                    return application;
+                }),
+            };
+        case 'MINIMIZE_APPLICATION':
+            return {
+                ...state,
+                activeApplication: state.activeApplication === action.payload ? null : state.activeApplication,
+                applications: state.applications.map((application) => {
+                    if (application.id === action.payload) {
+                        return {
+                            ...application,
+                            window: {
+                                ...application.window,
+                                max: false
+                            },
+                        };
+                    }
+                    return application;
+                }),
             };
         default:
             return state;
