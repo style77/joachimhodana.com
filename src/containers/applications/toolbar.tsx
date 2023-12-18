@@ -7,7 +7,7 @@ type ToolBarProps = {
   app: any;
   name: string;
   icon: string;
-  bg: string;
+  bg?: string;
   invert?: boolean;
   float?: boolean;
   noinvert?: boolean;
@@ -29,7 +29,7 @@ export const ToolBar = (props: ToolBarProps) => {
     let posP = [0, 0],
       dimP = [0, 0],
       posM = [0, 0],
-      wnapp = {},
+      wnapp: HTMLDivElement | {} = {},
       op = 0,
       vec = [0, 0];
   
@@ -41,19 +41,21 @@ export const ToolBar = (props: ToolBarProps) => {
       e = e || window.event;
       e.preventDefault();
       posM = [e.clientY, e.clientX];
-      op = e.currentTarget.dataset.op;
-      console.log(op)
+      
+      const target = e.currentTarget as HTMLElement;
+
+      op = parseInt(target.dataset.op || "0");
   
       if (op == 0) {
-        wnapp =
-          e.currentTarget.parentElement &&
-          e.currentTarget.parentElement.parentElement;
+        wnapp = (e.currentTarget.parentElement && e.currentTarget.parentElement.parentElement) as HTMLDivElement;
       } else {
-        vec = e.currentTarget.dataset.vec.split(",");
+        
+        vec = (target.dataset.vec?.split(",") || []).map(Number);
+
         wnapp =
-          e.currentTarget.parentElement &&
+          (e.currentTarget.parentElement &&
           e.currentTarget.parentElement.parentElement &&
-          e.currentTarget.parentElement.parentElement.parentElement;
+          e.currentTarget.parentElement.parentElement.parentElement) as HTMLDivElement;
       }
   
       if (wnapp) {
@@ -80,7 +82,7 @@ export const ToolBar = (props: ToolBarProps) => {
       (wnapp as HTMLDivElement).style.width = dim1 + "px";
     };
   
-    const eleDrag = (e) => {
+    const eleDrag = (e: MouseEvent) => {
       e = e || window.event;
       e.preventDefault();
   
