@@ -25,10 +25,6 @@ export const Browser = () => {
     const applicationsState = useSelector((state: RootState) => state.applications);
     const wnapp = applicationsState.applications.find((app) => app.id === "Browser");
 
-    if (!wnapp) {
-        return null;
-    }
-
     const [url, setUrl] = useState<URL>(HOME_URL);
     const [isTyping, setTyping] = useState(false);
     const [history, setHistory] = useState<URL[]>([HOME_URL]);
@@ -37,6 +33,10 @@ export const Browser = () => {
     const searchRef = useRef<HTMLInputElement | null>(null)
 
     const dispatch = useDispatch();
+
+    if (!wnapp) {
+        return null;
+    }
 
     const bookmarks: Bookmark[] = [
         {

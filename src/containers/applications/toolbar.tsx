@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import "../../utils/general.scss";
 import { Icon } from "../../utils/icon";
+import { Application } from "../../utils/defaults";
 
 type ToolBarProps = {
-  app: any;
+  app: Application;
   name: string;
   icon: string;
   bg?: string;
@@ -29,7 +30,7 @@ export const ToolBar = (props: ToolBarProps) => {
     let posP = [0, 0],
       dimP = [0, 0],
       posM = [0, 0],
-      wnapp: HTMLDivElement | {} = {},
+      wnapp: HTMLDivElement | object = {},
       op = 0,
       vec = [0, 0];
   

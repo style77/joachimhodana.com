@@ -24,7 +24,7 @@ export const Calendar = () => {
     useEffect(() => {
       if (!loaded) {
         setLoad(true);
-        // @ts-ignore
+        // @ts-ignore dycalendar is not typed
         dycalendar.draw({
           target: "#dycalendar",
           type: "month",

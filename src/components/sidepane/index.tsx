@@ -72,7 +72,7 @@ export const SidePane = () => {
                 setSliderColor(brightnessValue, "brightness");
             }
         }
-    }, [sidepane.brightness, brightnessSlider]);
+    }, [sidepane.brightness, brightnessSlider]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <div

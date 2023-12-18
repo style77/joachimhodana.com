@@ -10,13 +10,13 @@ const store = configureStore({
     reducer: {
         // @ts-ignore  TODO: Fix this
         applications: applicationsReducer,
-        // @ts-ignore
+        // @ts-ignore TODO: Fix this
         wallpaper: wallpaperReducer,
-        // @ts-ignore
+        // @ts-ignore TODO: Fix this
         taskbar: taskbarReducer,
-        // @ts-ignore
+        // @ts-ignore TODO: Fix this
         sidepane: sidepaneReducer,
-        // @ts-ignore
+        // @ts-ignore TODO: Fix this
         desktop: desktopReducer,
     }
 });
