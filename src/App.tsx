@@ -6,6 +6,9 @@ import { SidePane } from "./components/sidepane";
 import { Calendar } from "./components/calendar";
 import { Desktop } from "./components/desktop";
 
+import * as Applications from "./containers/applications";
+import { useSelector } from "react-redux";
+
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
   return (
@@ -53,6 +56,9 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
 }
 
 function App() {
+
+  const applicationsState = useSelector((state) => state.applications);
+
   const [selecting, setSelecting] = useState(false);
   const [selectionBox, setSelectionBox] = useState({});
 
@@ -107,7 +113,7 @@ function App() {
             onMouseDown={handleMouseDown}
             onMouseUp={handleMouseUp}
           >
-            {selecting && (
+            {selecting && !applicationsState.activeApplication && (
               <div
                 className="selectionBox"
                 style={{
@@ -119,6 +125,10 @@ function App() {
               />
             )}
             <Desktop />
+            {applicationsState.applications.map((key, idx) => {
+              var WinApp = (Applications as any)[key.name];
+              return <WinApp key={idx} />;
+            })}
             <SidePane />
             <Calendar />
           </div>
