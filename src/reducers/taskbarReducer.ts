@@ -1,7 +1,7 @@
 import { taskbarApps } from "../utils/defaults";
 
 const initialState = {
-    apps: taskbarApps,
+    applications: taskbarApps,
     align: 'center',
     showSearch: true,
     showWidgets: false, // Who tf uses that
@@ -13,7 +13,7 @@ export default function taskbarReducer(state = initialState, action: Action) {
         case 'SET_TASKBAR_APPS':
             return {
                 ...state,
-                apps: action.payload,
+                applications: action.payload,
             };
         case 'SET_VOLUME':
             if (action.payload < 0) {
