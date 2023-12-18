@@ -16,7 +16,7 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
   const [loading, setLoading] = useState<number>(0);
 
   useEffect(() => {
-    let speed = 1000;
+    const speed = 1000;
 
     const interval = setInterval(() => {
       setLoading((loading) => {
