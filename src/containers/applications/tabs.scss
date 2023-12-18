@@ -174,14 +174,14 @@
       border: solid 1px var(--comp-txt);
       transition: all 0.2s linear;
     }
+  }
 
-    input:hover {
-      background: rgb(241, 241, 241);
-    }
+  body[data-theme="light"] .searchBar:hover {
+    background: rgb(241, 241, 241);
+  }
 
-    input[data-theme="dark"]:hover {
-      background: rgb(35, 37, 47);
-    }
+  body[data-theme="dark"] .searchBar:hover {
+    background: rgb(35, 37, 47);
   }
   
   .bookbar {
