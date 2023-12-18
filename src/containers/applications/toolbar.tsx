@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import "../../utils/general.scss";
 import { Icon } from "../../utils/icon";
 
@@ -22,7 +22,7 @@ export const ToolBar = (props) => {
       });
     };
   
-    var posP = [0, 0],
+    let posP = [0, 0],
       dimP = [0, 0],
       posM = [0, 0],
       wnapp = {},
@@ -79,7 +79,7 @@ export const ToolBar = (props) => {
       e = e || window.event;
       e.preventDefault();
   
-      var pos0 = posP[0] + e.clientY - posM[0],
+      let pos0 = posP[0] + e.clientY - posM[0],
         pos1 = posP[1] + e.clientX - posM[1],
         dim0 = dimP[0] + vec[0] * (e.clientY - posM[0]),
         dim1 = dimP[1] + vec[1] * (e.clientX - posM[1]);

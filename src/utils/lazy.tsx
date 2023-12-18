@@ -8,7 +8,7 @@ export const LazyComponent = ({ show, children }: {
 
     useEffect(() => {
         if (show && !loaded) setLoad(true);
-    }, [show]);
+    }, [show, loaded]);
 
     return show || loaded ? <>{children}</> : null;
 };

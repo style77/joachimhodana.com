@@ -172,11 +172,15 @@
       color: var(--txt-col);
       border-radius: 4px;
       border: solid 1px var(--comp-txt);
+      transition: all 0.2s linear;
     }
 
     input:hover {
+      background: rgb(241, 241, 241);
+    }
+
+    input[data-theme="dark"]:hover {
       background: rgb(35, 37, 47);
-      transition: all 0.2s linear;
     }
   }
   

@@ -2,6 +2,9 @@ import "./general.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as FaIcons from "@fortawesome/free-solid-svg-icons";
 import * as AllIcons from "./icons";
+import {
+    IconProp,
+} from '@fortawesome/fontawesome-svg-core'
 
 type IconProps = {
     src?: string;
@@ -23,6 +26,9 @@ type IconProps = {
     height?: number;
 }
 
+type FontAwesomeIconName = keyof typeof FaIcons;
+type AllIconsName = keyof typeof AllIcons;
+
 export const Icon = (props: IconProps) => {
 
     const prtclk = !props.clicked ? "prtclk" : "";
@@ -42,28 +48,29 @@ export const Icon = (props: IconProps) => {
                     data-invert={props.invert}
                     data-click={props.clicked}
                     icon={
-                        (FaIcons as any)[props.fafa]
+                        FaIcons[props.fafa as FontAwesomeIconName] as IconProp
                     }
                 />
             </div>
         );
     } else if (props.allIcons && props.src) {
-        var CustomIcon = (AllIcons as any)[props.src];
+        const CustomIcon = AllIcons[props.src as AllIconsName];
         return (
             <div
                 className={`uicon ${prtclk} ${props.className || ""}`}
                 onClick={props.onClick}
             >
                 <CustomIcon
+                    // @ts-expect-error This is a custom icon component
                     style={{
-                        width: props.width,
-                        height: props.height || props.width,
-                    }}
+                        width: props.width || 24,
+                        height: props.height || props.width || 24,
+                    }} 
                 />
             </div>
         );
     } else {
-        var src = `icon/${props.ui ? "ui/" : ""}${props.src}.png`;
+        let src = `icon/${props.ui ? "ui/" : ""}${props.src}.png`;
         if (props.ext != null && props.src && props.src.includes("http")) {
             src = props.src;
         }

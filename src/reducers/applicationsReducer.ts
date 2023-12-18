@@ -28,31 +28,29 @@ const initialState: {
 };
 
 export default function applicationsReducer(state = initialState, action: Action) {
-    switch (action.type) { 
-        case 'SET_ACTIVE_APPLICATION':
-            const appId = action.payload.id
-            const contentType = action.payload.type
-            
-            let metadata = {}
-            
-            if (contentType === "file") {
-                const fileName = action.payload.name
 
-                // iterate over appsAndFiles and find the file with the same name
+    switch (action.type) {
+        case 'SET_ACTIVE_APPLICATION': {
+            const payload = action.payload as { id: string; type: string; name: string };
+
+            const appId = payload.id
+            const contentType = payload.type;
+
+            let metadata: { content: string } = { content: "" };
+
+            if (contentType === "file") {
+                const fileName = payload.name;
                 const file = Object.values(appsAndFiles).find((file) => file.name === fileName) as IFile;
+
                 if (file) {
                     metadata = {
-                        content: (file as any).content,
-                    }
-                }
-            } else {
-                metadata = {
-                    content: ""
+                        content: file.content || "",
+                    };
                 }
             }
 
-            const content = appsAndFiles[appId]
-            
+            const content = appsAndFiles[appId || ""];
+
 
             if (!state.applications.find((application) => application.id === appId)) {
                 const appDefaults: Application = {
@@ -91,6 +89,7 @@ export default function applicationsReducer(state = initialState, action: Action
                     }),
                 };
             }
+        }
         case 'CLOSE_APPLICATION':
             if (state.activeApplication === action.payload) {
                 return {
@@ -103,23 +102,25 @@ export default function applicationsReducer(state = initialState, action: Action
                 ...state,
                 applications: state.applications.filter((application) => application.id !== action.payload),
             };
-        case 'RESIZE_APPLICATION':
+        case 'RESIZE_APPLICATION': {
+            const payload = action.payload as { id: string; size: string };
             return {
                 ...state,
                 applications: state.applications.map((application) => {
-                    if (application.id === action.payload.id) {
+                    if (application.id === payload.id) {
                         return {
                             ...application,
                             window: {
                                 ...application.window,
                                 max: true,
-                                size: action.payload.size,
+                                size: payload.size,
                             },
                         };
                     }
                     return application;
                 }),
-            };
+            }
+        }
         case 'MINIMIZE_APPLICATION':
             return {
                 ...state,

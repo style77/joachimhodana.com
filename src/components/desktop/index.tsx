@@ -5,17 +5,18 @@ import "../search/searchpane.scss";
 import "../sidepane/sidepane.scss";
 import "../start/startmenu.scss";
 import "./desktop.scss";
+import { Application } from "../../utils/defaults";
 
 export const Desktop = () => {
-    const desktopState = useSelector((state: any) => state.desktop)
+    const desktopState = useSelector((state) => state.desktop)
 
     const dispatch = useDispatch()
 
     return (
         <div className="desktopCont">
-            {desktopState.applications.map((app, i) => {
+            {desktopState.applications.map((app: Application, idx: number) => {
                 return (
-                    <div key={i} className="dskApp" tabIndex={i}>
+                    <div key={idx} className="dskApp" tabIndex={idx}>
                         <Icon
                             clicked={true}
                             className="dskIcon"
