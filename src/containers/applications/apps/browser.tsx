@@ -29,6 +29,7 @@ export const Browser = () => {
     const [history, setHistory] = useState<URL[]>([HOME_URL]);
 
     const iframeRef = useRef<HTMLIFrameElement | null>(null)
+    const searchRef = useRef<HTMLInputElement | null>(null)
 
     const dispatch = useDispatch();
 
@@ -115,11 +116,12 @@ export const Browser = () => {
     };
 
     const combineUrl = (url: URL) => {
-        return `${url.protocol}://${url.host}/${url.path}`;
+        return `${url.protocol}://${url.host}/${url.path || ""}`;
     };
 
     const search = (url: URL) => {
         setUrl(url);
+        searchRef.current!.value = combineUrl(url);
         if (iframeRef.current) {
             iframeRef.current.src = `${url.protocol}://${url.host}/${url.path}`;
             setHistory([...history, url]);
@@ -196,7 +198,7 @@ export const Browser = () => {
                                 className="w-full h-6 px-4"
                                 onKeyDown={handleKeyDown}
                                 onChange={(e) => { setUrl(getValidUrl(e.target.value)); !isTyping && setTyping(true) }}
-                                value={combineUrl(url)}
+                                ref={searchRef}
                                 placeholder="Type url or a query to search"
                                 type="text"
                             />
