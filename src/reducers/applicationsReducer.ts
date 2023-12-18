@@ -14,6 +14,9 @@ type Window = {
 
 type Application = {
     id: string;
+    name: string;
+    icon: string;
+    type: string;
     window: Window;
 };
 
@@ -32,6 +35,9 @@ export default function applicationsReducer(state = initialState, action: Action
             if (!state.applications.find((application) => application.id === action.payload)) {
                 const appDefaults: Application = {
                     id: action.payload,
+                    name: apps[action.payload].name,
+                    icon: apps[action.payload].icon,
+                    type: apps[action.payload].type,
                     window: {
                         title: apps[action.payload].window.title,
                         position: {

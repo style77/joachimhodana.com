@@ -44,7 +44,12 @@ const Taskbar = () => {
                                 width={24}
                             />
                         ) : null}
-                        {taskbarState.apps.map((task, i) => {
+                        {[
+                            ...taskbarState.applications,
+                            ...applicationsState.applications.filter(
+                                ({ id }) => !taskbarState.applications.some((app) => app.id === id)
+                            ),
+                        ].map((task, i) => {
                             var isActive = task.id === applicationsState.activeApplication;
                             var isOpen = applicationsState.applications.find((app) => app.id === task.id) !== undefined;
                             return (
