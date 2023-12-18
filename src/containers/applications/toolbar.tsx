@@ -102,18 +102,18 @@ export const ToolBar = (props) => {
       wnapp.classList.remove("notrans");
       wnapp.classList.remove("z9900");
   
-      var action = {
-        type: props.app,
-        payload: "resize",
-        dim: {
-          width: getComputedStyle(wnapp).width,
-          height: getComputedStyle(wnapp).height,
-          top: getComputedStyle(wnapp).top,
-          left: getComputedStyle(wnapp).left,
-        },
-      };
+      // var action = {
+      //   type: props.app,
+      //   payload: "resize",
+      //   dim: {
+      //     width: getComputedStyle(wnapp).width,
+      //     height: getComputedStyle(wnapp).height,
+      //     top: getComputedStyle(wnapp).top,
+      //     left: getComputedStyle(wnapp).left,
+      //   },
+      // };
   
-      dispatch(action);
+      // dispatch(action);
     };
   
     return (
@@ -148,6 +148,7 @@ export const ToolBar = (props) => {
               src="minimize"
               ui
               width={12}
+              onClick={() => dispatch({type: "MINIMIZE_APPLICATION", payload: props.app.id})}
             />
             <div
               className="snapbox h-full"
@@ -161,6 +162,10 @@ export const ToolBar = (props) => {
                 ui
                 width={12}
                 src={props.size == "full" ? "maximize" : "maxmin"}
+                onClick={() => dispatch({type: "RESIZE_APPLICATION", payload: {
+                  id: props.app.id,
+                  size: props.size == "full" ? "cstm" : "full"
+                }})}
               />
             </div>
             <Icon
