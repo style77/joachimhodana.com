@@ -1,4 +1,4 @@
-type Application = {
+export type Application = {
     name: string;
     icon: string;
     type: string;
@@ -92,7 +92,43 @@ const apps: {
             "title": "Discord",
         },
     },
+    "Notepad": {
+        "name": "Notepad",
+        "icon": "notepad",
+        "type": "app",
+        "id": "Notepad",
+        "window": {
+            "title": "Notepad",
+        },
+    },
 }
+
+export type File = {
+    type: "file";
+    fileType: "image" | "text" | "pdf";
+    content: string;
+} & Application;
+
+var files: {
+    [key: string]: File;
+} = {
+    "Hello": {
+        "name": "hello.txt",
+        "icon": "notepad",
+        "type": "file",
+        "id": "Notepad",
+        "window": {
+            "title": "hello.txt",
+        },
+        "fileType": "text",
+        "content": "Hello World!",
+    }
+}
+
+const appsAndFiles = {
+    ...apps,
+    ...files,
+};
 
 var { taskbarApps, desktopApps } = {
     taskbarApps: [
@@ -113,9 +149,9 @@ var { taskbarApps, desktopApps } = {
         apps.VisualStudioCode,
         apps.Terminal,
         apps.Calculator,
-        apps.Calculator,
-        apps.Calculator,
+        apps.Notepad,
+        files.Hello
     ]   
 }
 
-export { apps, taskbarApps, desktopApps };
+export { appsAndFiles, taskbarApps, desktopApps };

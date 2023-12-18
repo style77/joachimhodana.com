@@ -24,7 +24,11 @@ export const Desktop = () => {
                             onClick={() => {
                                 dispatch({
                                     type: "SET_ACTIVE_APPLICATION",
-                                    payload: app.id,
+                                    payload: {
+                                        id: app.id,
+                                        name: app.name,
+                                        type: app.type,
+                                    },
                                 })
                             }}
                         />

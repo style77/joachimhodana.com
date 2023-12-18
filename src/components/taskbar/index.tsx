@@ -55,12 +55,13 @@ const Taskbar = () => {
                             return (
                                 <div
                                     key={i}
-                                    value={task.icon}
                                 >
                                     <Icon
                                         className="tsIcon"
                                         width={24}
-                                        onClick={() => isActive ? dispatch({ type: "MINIMIZE_APPLICATION", payload: task.id }) : dispatch({ type: "SET_ACTIVE_APPLICATION", payload: task.id })}
+                                        onClick={() => isActive ? dispatch({ type: "MINIMIZE_APPLICATION", payload: task.id }) : dispatch({ type: "SET_ACTIVE_APPLICATION", payload: {
+                                            id: task.id
+                                        }, })}
                                         active={isActive}
                                         open={isOpen}
                                         src={task.icon}
