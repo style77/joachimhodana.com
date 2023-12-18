@@ -105,6 +105,16 @@ var { taskbarApps, desktopApps } = {
         apps.Terminal,
     ],
     desktopApps: [
+        apps.Browser,
+        apps.Discord,
+        apps.Github,
+        apps.LeagueOfLegends,
+        apps.FileExplorer,
+        apps.VisualStudioCode,
+        apps.Terminal,
+        apps.Calculator,
+        apps.Calculator,
+        apps.Calculator,
     ]   
 }
 
