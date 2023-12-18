@@ -13,6 +13,25 @@ import { RootState } from "./reducers";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
+  const [loading, setLoading] = useState<number>(0);
+
+  useEffect(() => {
+    let speed = 1000;
+
+    const interval = setInterval(() => {
+      setLoading((loading) => {
+        if (loading < 99) {
+          return loading + 1;
+        } else {
+          clearInterval(interval);
+          return loading;
+        }
+      });
+    }, speed);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div>
       <meta charSet="UTF-8" />
@@ -27,11 +46,11 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
             collecting some error info, and then we'll restart for you.
           </h2>
           <h2>
-            <span id="percentage">0</span>% complete
+            <span id="percentage">{ loading }</span>% complete
           </h2>
           <div id="details">
             <div id="qr">
-              <div id="image">
+              <div id="image w-full h-full">
                 <img src="https://win11.blueedge.me/img/qr.png" alt="QR Code" />
               </div>
             </div>
@@ -40,7 +59,7 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
                 For more information about this issue and possible fixes, visit
                 <br />{" "}
                 <a href="https://github.com/style77/joachimhodana.com/issues">
-                  https://github.com/blueedgetechno/win11React/issues
+                  https://github.com/style77/joachimhodana.com/issues
                 </a>{" "}
               </h4>
               <h5>
