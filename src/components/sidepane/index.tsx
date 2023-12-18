@@ -54,15 +54,31 @@ export const SidePane = () => {
 
     useEffect(() => {
         if (brightnessSlider && sidepane.brightness) {
-            brightnessSlider.value = sidepane.brightness;
-            setSliderColor(sidepane.brightness, "brightness");
+            let brightnessValue: number | undefined;
+    
+            if (typeof sidepane.brightness === 'number') {
+                brightnessValue = sidepane.brightness;
+            } else if (
+                typeof sidepane.brightness === 'object' &&
+                'id' in sidepane.brightness &&
+                'type' in sidepane.brightness &&
+                'name' in sidepane.brightness
+            ) {
+                brightnessValue = parseInt(sidepane.brightness.id, 10);
+            }
+    
+            if (brightnessValue !== undefined) {
+                brightnessSlider.value = String(brightnessValue);
+                setSliderColor(brightnessValue, "brightness");
+            }
         }
-    }, [sidepane.brightness, brightnessSlider])  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [sidepane.brightness, brightnessSlider]);
 
     return (
         <div
             className="sidePane dpShad"
             data-hide={sidepane.hide}
+            // @ts-expect-error Variable is not typed
             style={{ "--prefix": "PANE" }}
         >
             <div className="quickSettings p-5 pb-8">

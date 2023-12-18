@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import './background.scss'
+import { RootState } from '../../reducers';
 
-function Background({ image }) {
+function Background({ image }: { image: string }) {
     return (
         <div
             className="background"
@@ -12,8 +13,8 @@ function Background({ image }) {
     );
 }
 
-const mapStateToProps = state => ({
-    image: state.wallpaper.image,
+const mapStateToProps = (state: RootState) => ({
+    image: state.wallpaper.image as string,
 });
 
 export default connect(mapStateToProps)(Background);

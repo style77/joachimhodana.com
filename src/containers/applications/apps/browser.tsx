@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Icon } from "../../../utils/icon";
 import { LazyComponent } from "../../../utils/lazy";
@@ -24,6 +24,10 @@ const HOME_URL = {
 export const Browser = () => {
     const applicationsState = useSelector((state: RootState) => state.applications);
     const wnapp = applicationsState.applications.find((app) => app.id === "Browser");
+
+    if (!wnapp) {
+        return null;
+    }
 
     const [url, setUrl] = useState<URL>(HOME_URL);
     const [isTyping, setTyping] = useState(false);
@@ -88,14 +92,6 @@ export const Browser = () => {
         return res !== null;
     };
 
-    useEffect(() => {
-        if (wnapp.url) {
-            console.log(wnapp.url)
-            setTyping(false);
-            setUrl(wnapp.url);
-        }
-    }, [wnapp.url]);
-
     const getValidUrl = (url: string) => {
         if (isValidURL(url)) {
             if (!url.startsWith("http")) {
@@ -142,11 +138,6 @@ export const Browser = () => {
             className="edgeBrowser floatTab dpShad"
             data-size={wnapp.window.size}
             data-max={wnapp.window.max}
-            style={{
-                ...(wnapp.window.size == "cstm" ? wnapp.window.dim : null),
-                zIndex: wnapp.window.z,
-            }}
-            data-hide={wnapp.hide}
             id={wnapp.icon + "App"}
         >
             <ToolBar
@@ -195,12 +186,13 @@ export const Browser = () => {
                         />
                         <div className="addCont relative flex items-center">
                             
+                            <Icon className="absolute left-3" src="google" width={13} ui />
                             <input
-                                className="w-full h-6 px-4"
+                                className="w-full h-6 px-8 text-sm justify-center searchBar"
                                 onKeyDown={handleKeyDown}
                                 onChange={(e) => { setUrl(getValidUrl(e.target.value)); !isTyping && setTyping(true) }}
                                 ref={searchRef}
-                                placeholder="Type url or a query to search"
+                                placeholder="Search Google or type a URL"
                                 type="text"
                             />
                             <div className="absolute right-0 flex justify-center mr-0.5">
@@ -244,7 +236,7 @@ export const Browser = () => {
                         </div>
                     </div>
                     <div className="siteFrame flex-grow overflow-hidden">
-                        <LazyComponent show={!wnapp.hide}>
+                        <LazyComponent show={true}>
                             <iframe
                                 src={!isTyping ? combineUrl(url) : combineUrl(history[history.length - 1])}
                                 ref={iframeRef}

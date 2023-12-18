@@ -3,7 +3,18 @@ import { useDispatch } from "react-redux";
 import "../../utils/general.scss";
 import { Icon } from "../../utils/icon";
 
-export const ToolBar = (props) => {
+type ToolBarProps = {
+  app: any;
+  name: string;
+  icon: string;
+  bg: string;
+  invert?: boolean;
+  float?: boolean;
+  noinvert?: boolean;
+  size?: string;
+};
+
+export const ToolBar = (props: ToolBarProps) => {
     const dispatch = useDispatch();
     const [snap, setSnap] = useState(false);
   
@@ -15,13 +26,6 @@ export const ToolBar = (props) => {
       setSnap(false);
     };
   
-    const toolClick = () => {
-      dispatch({
-        type: props.app,
-        payload: "front",
-      });
-    };
-  
     let posP = [0, 0],
       dimP = [0, 0],
       posM = [0, 0],
@@ -29,7 +33,7 @@ export const ToolBar = (props) => {
       op = 0,
       vec = [0, 0];
   
-    const toolDrag = (e) => {
+    const toolDrag = (e: React.MouseEvent) => {
       if (props.size == "full") {
         return
       }
@@ -38,6 +42,7 @@ export const ToolBar = (props) => {
       e.preventDefault();
       posM = [e.clientY, e.clientX];
       op = e.currentTarget.dataset.op;
+      console.log(op)
   
       if (op == 0) {
         wnapp =
@@ -52,12 +57,12 @@ export const ToolBar = (props) => {
       }
   
       if (wnapp) {
-        wnapp.classList.add("notrans");
-        wnapp.classList.add("z9900");
-        posP = [wnapp.offsetTop, wnapp.offsetLeft];
+        (wnapp as HTMLDivElement).classList.add("notrans");
+        (wnapp as HTMLDivElement).classList.add("z9900");
+        posP = [(wnapp as HTMLDivElement).offsetTop, (wnapp as HTMLDivElement).offsetLeft];
         dimP = [
-          parseFloat(getComputedStyle(wnapp).height.replaceAll("px", "")),
-          parseFloat(getComputedStyle(wnapp).width.replaceAll("px", "")),
+          parseFloat(getComputedStyle(wnapp as HTMLDivElement).height.replace("px", "")),
+          parseFloat(getComputedStyle(wnapp as HTMLDivElement).width.replace("px", "")),
         ];
       }
   
@@ -65,14 +70,14 @@ export const ToolBar = (props) => {
       document.onmousemove = eleDrag;
     };
   
-    const setPos = (pos0, pos1) => {
-      wnapp.style.top = pos0 + "px";
-      wnapp.style.left = pos1 + "px";
+    const setPos = (pos0: number, pos1: number) => {
+      (wnapp as HTMLDivElement).style.top = pos0 + "px";
+      (wnapp as HTMLDivElement).style.left = pos1 + "px";
     };
   
-    const setDim = (dim0, dim1) => {
-      wnapp.style.height = dim0 + "px";
-      wnapp.style.width = dim1 + "px";
+    const setDim = (dim0: number, dim1: number) => {
+      (wnapp as HTMLDivElement).style.height = dim0 + "px";
+      (wnapp as HTMLDivElement).style.width = dim1 + "px";
     };
   
     const eleDrag = (e) => {
@@ -99,8 +104,8 @@ export const ToolBar = (props) => {
       document.onmouseup = null;
       document.onmousemove = null;
   
-      wnapp.classList.remove("notrans");
-      wnapp.classList.remove("z9900");
+      (wnapp as HTMLDivElement).classList.remove("notrans");
+      (wnapp as HTMLDivElement).classList.remove("z9900");
   
       // var action = {
       //   type: props.app,
@@ -129,7 +134,6 @@ export const ToolBar = (props) => {
           <div
             className="topInfo flex flex-grow items-center"
             data-float={props.float != null}
-            onClick={toolClick}
             onMouseDown={toolDrag}
             data-op="0"
           >

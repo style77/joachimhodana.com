@@ -8,10 +8,15 @@ import desktopReducer from './desktopReducer';
 
 const store = configureStore({
     reducer: {
+        // @ts-ignore  TODO: Fix this
         applications: applicationsReducer,
+        // @ts-ignore
         wallpaper: wallpaperReducer,
+        // @ts-ignore
         taskbar: taskbarReducer,
+        // @ts-ignore
         sidepane: sidepaneReducer,
+        // @ts-ignore
         desktop: desktopReducer,
     }
 });

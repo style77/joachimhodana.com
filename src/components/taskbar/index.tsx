@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./taskbar.scss";
 import { Icon } from "../../utils/icon";
 import { RootState } from "../../reducers";
+import { Application } from "../../utils/defaults";
 
 const Taskbar = () => {
     const taskbarState = useSelector((state: RootState) => {
@@ -46,9 +47,9 @@ const Taskbar = () => {
                             />
                         ) : null}
                         {[
-                            ...taskbarState.applications,
+                            ...taskbarState.applications as Application[],
                             ...applicationsState.applications.filter(
-                                ({ id }) => !taskbarState.applications.some((app) => app.id === id)
+                                ({ id }) => !(taskbarState.applications as Application[]).some((app) => app.id === id)
                             ),
                         ].map((task, i) => {
                             const isActive = task.id === applicationsState.activeApplication;

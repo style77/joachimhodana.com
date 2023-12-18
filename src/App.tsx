@@ -102,7 +102,7 @@ function App() {
     };
   }, [selecting, selectionBox]);
 
-  const handleMouseDown = (e) => {
+  const handleMouseDown = (e: MouseEvent) => {
     setSelecting(true);
     const { clientX, clientY } = e;
     setSelectionBox({
@@ -123,7 +123,7 @@ function App() {
         <div className="appwrap">
           <Background />
           <div className="desktop" data-menu="desk"
-            onMouseDown={handleMouseDown}
+            onMouseDown={(e) => handleMouseDown(e.nativeEvent)}
             onMouseUp={handleMouseUp}
           >
             {selecting && selectionBox && !applicationsState.activeApplication && (

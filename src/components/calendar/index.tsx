@@ -24,6 +24,7 @@ export const Calendar = () => {
     useEffect(() => {
       if (!loaded) {
         setLoad(true);
+        // @ts-ignore
         dycalendar.draw({
           target: "#dycalendar",
           type: "month",
@@ -39,6 +40,7 @@ export const Calendar = () => {
       <div
         className={`calnpane ${collapse} dpShad`}
         data-hide={sidepane.calendarHide}
+        // @ts-expect-error Variable is not typed
         style={{ "--prefix": "CALN" }}
       >
         <div className="topBar pl-4 text-sm">
