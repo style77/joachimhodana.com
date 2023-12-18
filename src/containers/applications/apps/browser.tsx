@@ -211,7 +211,7 @@ export const Browser = () => {
                                 />
                                 <Icon
                                     className="pt-1 hover:bg-gray-200/25 rounded-md transition duration-200 ease-in-out p-0.5 px-2"
-                                    src="bat"
+                                    src="BAT"
                                     ui
                                     width={20}
                                 />
