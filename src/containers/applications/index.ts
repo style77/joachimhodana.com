@@ -4,4 +4,5 @@ import "./wnapp.scss";
 
 export * from './apps/browser'
 export * from './apps/notepad'
+export * from './apps/github'
 // export * from './apps/visualstudiocode'
