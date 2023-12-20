@@ -123,7 +123,28 @@ const files: {
             "title": "hello.txt",
         },
         "fileType": "text",
-        "content": "Hello World!",
+        "content": "Hello World!\n\nThis is my personal portfolio made in Windows 11 style.\n\nI hope you like it!\n\n\n\ncontact: stylek777@gmail.com or me@joachimhodana.com",
+    },
+    "Interviewer": {
+        "name": "for interviewer.txt",
+        "icon": "notepad",
+        "type": "file",
+        "id": "Notepad",
+        "window": {
+            "title": "for interviewer.txt",
+        },
+        "fileType": "text",
+        "content": `
+Checkout my CV, it's in the top right corner.\n
+If you want to see my code, double click on the Github icon to open my Github profile, or open Visual Studio Code (here in simulator), and review code for few projects that are scraped from my Github.
+
+
+If you want to see my projects in action, open Browser and just choose project from bookmarks (these are demo version with demo credentials provided).
+
+
+
+
+contact: stylek777@gmail.com or me@joachimhodana.com`,
     }
 }
 
@@ -151,9 +172,9 @@ const { taskbarApps, desktopApps } = {
         apps.VisualStudioCode,
         apps.Terminal,
         apps.Calculator,
-        apps.Notepad,
-        files.Hello
-    ]   
+        files.Hello,
+        files.Interviewer,
+    ]
 }
 
 export { appsAndFiles, taskbarApps, desktopApps };
