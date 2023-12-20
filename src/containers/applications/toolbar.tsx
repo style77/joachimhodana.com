@@ -139,6 +139,12 @@ export const ToolBar = (props: ToolBarProps) => {
           data-float={props.float != null}
           onMouseDown={toolDrag}
           data-op="0"
+          onDoubleClick={() => dispatch({
+            type: "RESIZE_APPLICATION", payload: {
+              id: props.app.id,
+              size: props.size == "full" ? "mini" : "full"
+            }
+          })}
         >
           <Icon src={props.icon} ui width={14} />
           <div
