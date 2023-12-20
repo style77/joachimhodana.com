@@ -57,7 +57,8 @@ export const VisualStudioCode = () => {
     const wnapp = applicationsState.applications.find((app) => app.id === "VisualStudioCode");
 
     const [expandedDirs, setExpandedDirs] = useState<{ [key: string]: boolean }>({});
-    // @ts-ignore json structure is not typed
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [directoryData, setDirectoryData] = useState<{ [key: string]: any }>({});
 
     const [selectedFile, setSelectedFile] = useState<DirectoryItem | null>(null);
