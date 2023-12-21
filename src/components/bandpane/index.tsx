@@ -15,7 +15,7 @@ export const BandPane = () => {
         <div className="bandContainer">
           <Icon
             className="hvlight"
-            width={17}
+            width={14}
             clicked={true}
             ui
             src="mullvad_locked"
@@ -24,13 +24,15 @@ export const BandPane = () => {
             className="hvlight"
             width={17}
             clicked={true}
-            src="spotify"
+            ui
+            src="docker"
           />
           <Icon
             className="hvlight"
-            width={17}
+            width={14}
             clicked={true}
-            src="notepad"
+            ui
+            src="discord"
           />
         </div>
       </div>
