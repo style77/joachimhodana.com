@@ -82,7 +82,7 @@ export default function sidepaneReducer(state = initialState, action: Action) {
                 updatedQuicks = state.quicks.map(quick => {
                     if (quick.name === "Battery Saver") {
                         const newState = !quick.state;
-                        updatedBrightness = newState ? 70 : 100;
+                        updatedBrightness = newState ? 40 : 100;
                         return { ...quick, state: newState };
                     }
                     return quick;
