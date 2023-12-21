@@ -77,8 +77,12 @@ const Taskbar = () => {
                 <div className="taskright">
                     <div
                         className="px-2 prtclk handcr hvlight flex"
+                        onClick={() => dispatch({ type: "TOGGLE_BANDPANE" })} 
                     >
-                        <Icon fafa="faChevronUp" width={10} />
+                        <Icon 
+                            fafa="faChevronUp" 
+                            width={10} 
+                        />
                     </div>
                     <div
                         className="prtclk handcr my-1 px-1 hvlight flex rounded"
