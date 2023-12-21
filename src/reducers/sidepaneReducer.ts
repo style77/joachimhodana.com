@@ -48,6 +48,8 @@ const initialState = {
     hide: true,
     calendarHide: true,
 
+    mullvadLocked: true,
+
     brightness: 100,
 };
 
