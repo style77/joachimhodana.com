@@ -103,6 +103,15 @@ const apps: {
             "title": "Notepad",
         },
     },
+    "Mullvad": {
+        "name": "Mullvad",
+        "icon": "mullvad",
+        "type": "app",
+        "id": "Mullvad",
+        "window": {
+            "title": "Mullvad",
+        },
+    }
 }
 
 export type File = {
