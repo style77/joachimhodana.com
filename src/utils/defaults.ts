@@ -144,7 +144,7 @@ const files: {
         },
         "fileType": "text",
         "content": `
-Checkout my CV, it's in the top right corner.\n
+Checkout my CV, it's on desktop in \`CV.pdf\` file.\n
 If you want to see my code, double click on the Github icon to open my Github profile, or open Visual Studio Code (here in simulator), and review code for few projects that are scraped from my Github.
 
 
