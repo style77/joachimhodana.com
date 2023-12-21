@@ -1,11 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../../utils/icon";
 import { RootState } from "../../reducers";
+import { useRef } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 
 export const BandPane = () => {
   const sidepane = useSelector((state: RootState) => state.sidepane);
 
   const dispatch = useDispatch();
+
+  const bandPaneRef = useRef<HTMLDivElement>(null);
+
+  useOnClickOutside(bandPaneRef, () => dispatch(
+    {
+      type: "HIDE_BANDPANE"
+    }
+  ))
 
   return (
     <div
@@ -13,6 +23,7 @@ export const BandPane = () => {
       data-hide={sidepane.bandhide}
       // @ts-expect-error Variable is not typed
       style={{ "--prefix": "BAND" }}
+      ref={bandPaneRef}
     >
       <div className="bandContainer">
         <Icon
