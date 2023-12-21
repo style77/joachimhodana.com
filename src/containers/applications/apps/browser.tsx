@@ -46,20 +46,9 @@ export const Browser = () => {
             path: "webhp?igu=1",
         },
         {
-            name: "YouTube",
-            protocol: "https",
-            host: "www.youtube.com",
-        },
-        {
             name: "ChatGPT",
             protocol: "https",
             host: "chat.openai.com",
-        },
-        {
-            name: "GitHub - style77",
-            protocol: "https",
-            host: "github.com",
-            path: "style77",
         },
         {
             name: "Trendaptive",
@@ -71,19 +60,12 @@ export const Browser = () => {
             protocol: "https",
             host: "codenerds.tech",
         },
+        {
+            name: "Joachim Hodana",
+            protocol: "https",
+            host: "joachimhodana.com",
+        }
     ]
-    // {
-    //     Bookmark[]
-    // } = {
-    //     "https://www.google.com/webhp?igu=1": "Google",
-    //     "https://www.youtube.com/": "YouTube",
-    //     "https://chat.openai.com": "ChatGPT",
-    //     "https://github.com/style77": "GitHub - style77",
-    //     "http://trendaptive.com/": "Trendaptive",
-    //     "https://codenerds.tech/": "Code Nerds",
-    //     // "https://demo.newsltr.io": "Newsltr - Demo",
-    //     // "https://demo.dealscan.io": "Dealscan - Demo",
-    // };
 
     const isValidURL = (string: string) => {
         const res = string.match(
