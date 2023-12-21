@@ -18,11 +18,7 @@ export const Mullvad = () => {
 
     const dispatch = useDispatch();
 
-    if (!wnapp) {
-        return null;
-    }
-
-    useOnClickOutside(appRef, () => dispatch(
+    useOnClickOutside(appRef, () => wnapp && dispatch(
         {
             type: "CLOSE_APPLICATION",
             payload: wnapp.id
@@ -36,6 +32,10 @@ export const Mullvad = () => {
             }
         )
     }, [dispatch])
+
+    if (!wnapp) {
+        return null;
+    }
 
     return (
         <div className="mullvadApp" ref={appRef}>
