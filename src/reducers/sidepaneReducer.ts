@@ -121,6 +121,8 @@ export default function sidepaneReducer(state = initialState, action: Action) {
             return { ...state, calendarHide: true, bandhide: !state.bandhide, hide: true };
         case "HIDE_BANDPANE":
             return { ...state, bandhide: true };
+        case "TOGGLE_MULLVAD":
+            return { ...state, mullvadLocked: !state.mullvadLocked };
         default:
             return state;
     }
