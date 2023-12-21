@@ -6,12 +6,12 @@
     right: 30px;
     bottom: 10px;
     color: rgb(249, 217, 215);
-  
+
     /* New styles for centering button */
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
+}
 
 .mullvadHeader[data-locked="false"] {
     background: rgb(224, 67, 57);
@@ -21,13 +21,19 @@
     background: rgb(68, 173, 77);
 }
 
+.mullvadMap {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
 .mullvadMap[data-locked="true"] {
     background: url("/public/mullvad_locked_map.png");
 }
 
 .mullvadConnectButton {
     width: 265px;
-    padding: 8px 16px;
+    padding: 8.5px 32px;
     border-radius: 4px;
     text-align: center;
     font-weight: bold;
