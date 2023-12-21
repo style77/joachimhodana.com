@@ -7,9 +7,10 @@ import { Calendar } from "./components/calendar";
 import { Desktop } from "./components/desktop";
 
 import * as Applications from "./containers/applications";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Application } from "./utils/defaults";
 import { RootState } from "./reducers";
+import { BandPane } from "./components/bandpane";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
@@ -46,7 +47,7 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
             collecting some error info, and then we'll restart for you.
           </h2>
           <h2>
-            <span id="percentage">{ loading }</span>% complete
+            <span id="percentage">{loading}</span>% complete
           </h2>
           <div id="details">
             <div id="qr">
@@ -87,12 +88,17 @@ interface ApplicationComponents {
   [key: string]: React.ComponentType<any>; // eslint-disable-line
 }
 
+const MIN_OPACITY = 0.30;
+
 function App() {
 
   const applicationsState = useSelector((state: RootState) => state.applications);
+  const sidepaneState = useSelector((state: RootState) => state.sidepane);
 
   const [selecting, setSelecting] = useState(false);
   const [selectionBox, setSelectionBox] = useState<SelectionBox | null>(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleMouseUpDocument = () => {
@@ -138,6 +144,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className="absolute inset-0 bg-black z-50 pointer-events-none"
+        style={{
+          // set opacity reverse to  sidepane.brightness (0-1), min value is 0.15
+          opacity: 1 - ((sidepaneState.brightness as number) / 100) - MIN_OPACITY,
+        }}
+      ></div>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <div className="appwrap">
           <Background />
@@ -158,10 +170,22 @@ function App() {
             )}
             <Desktop />
             {applicationsState.applications.map((key: Application, idx: number) => {
-              const WinApp = (Applications as ApplicationComponents)[key.name.replace(/ /g, '')];
-              return <WinApp key={idx} />;
+              const componentName = key.name.replace(/ /g, '');
+              const WinApp = (Applications as ApplicationComponents)[componentName];
+
+              if (WinApp) {
+                return <WinApp key={idx} />;
+              } else {
+                console.error(`App ${key.name} not found. It's probably not implemented yet.`);
+                dispatch({
+                  type: "CLOSE_APPLICATION",
+                  payload: key.id
+                });
+                return null;
+              }
             })}
             <SidePane />
+            <BandPane />
             <Calendar />
           </div>
           <Taskbar />

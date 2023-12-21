@@ -1,11 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Icon } from "../../utils/icon";
+import { RootState } from "../../reducers";
+import { useOnClickOutside } from "usehooks-ts";
 // import Battery from "../shared/Battery";
 import "../search/searchpane.scss";
 import "../sidepane/sidepane.scss";
 import "../start/startmenu.scss";
-import { RootState } from "../../reducers";
 
 export const SidePane = () => {
     const sidepane = useSelector((state: RootState) => state.sidepane);
@@ -74,12 +75,21 @@ export const SidePane = () => {
         }
     }, [sidepane.brightness, brightnessSlider]);  // eslint-disable-line react-hooks/exhaustive-deps
 
+    const sidePaneRef = useRef<HTMLDivElement>(null);
+
+    useOnClickOutside(sidePaneRef, () => dispatch(
+        {
+          type: "HIDE_SIDEPANE"
+        }
+      ))
+
     return (
         <div
             className="sidePane dpShad"
             data-hide={sidepane.hide}
             // @ts-expect-error Variable is not typed
             style={{ "--prefix": "PANE" }}
+            ref={sidePaneRef}
         >
             <div className="quickSettings p-5 pb-8">
                 <div className="qkCont">
