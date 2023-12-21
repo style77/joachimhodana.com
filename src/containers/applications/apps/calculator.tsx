@@ -164,7 +164,6 @@ export const Calculator = () => {
                 icon={wnapp.icon}
                 size={wnapp.window.size}
                 name="Calculator"
-                float
             />
             <div className="windowScreen flex flex-col" data-dock="true">
                 <div className="flex pt-2">
