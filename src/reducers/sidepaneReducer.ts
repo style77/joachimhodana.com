@@ -44,6 +44,7 @@ const initialState = {
             action: "changeTheme",
         },
     ],
+    bandhide: true,
     hide: true,
     calendarHide: true,
 
@@ -107,13 +108,17 @@ export default function sidepaneReducer(state = initialState, action: Action) {
         case "SET_BRIGHTNESS":
             return { ...state, brightness: action.payload };
         case "TOGGLE_SIDEPANE":
-            return { ...state, calendarHide: true, hide: !state.hide };
+            return { ...state, calendarHide: true, bandhide: true, hide: !state.hide };
         case "HIDE_SIDEPANE":
             return { ...state, hide: true };
         case "TOGGLE_CALENDAR":
-            return { ...state, calendarHide: !state.calendarHide, hide: true };
+            return { ...state, calendarHide: !state.calendarHide, bandhide: true, hide: true };
         case "HIDE_CALENDAR":
             return { ...state, calendarHide: true };
+        case "TOGGLE_BANDPANE":
+            return { ...state, calendarHide: true, bandhide: !state.bandhide, hide: true };
+        case "HIDE_BANDPANE":
+            return { ...state, bandhide: true };
         default:
             return state;
     }
