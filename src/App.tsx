@@ -10,6 +10,7 @@ import * as Applications from "./containers/applications";
 import { useSelector } from "react-redux";
 import { Application } from "./utils/defaults";
 import { RootState } from "./reducers";
+import { BandPane } from "./components/bandpane";
 
 
 function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetErrorBoundary: MouseEventHandler<HTMLButtonElement> }) {
@@ -162,6 +163,7 @@ function App() {
               return <WinApp key={idx} />;
             })}
             <SidePane />
+            <BandPane />
             <Calendar />
           </div>
           <Taskbar />
