@@ -7,7 +7,7 @@ import { Calendar } from "./components/calendar";
 import { Desktop } from "./components/desktop";
 
 import * as Applications from "./containers/applications";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Application } from "./utils/defaults";
 import { RootState } from "./reducers";
 import { BandPane } from "./components/bandpane";
@@ -47,7 +47,7 @@ function ErrorFallback({ error, resetErrorBoundary }: { error: Error, resetError
             collecting some error info, and then we'll restart for you.
           </h2>
           <h2>
-            <span id="percentage">{ loading }</span>% complete
+            <span id="percentage">{loading}</span>% complete
           </h2>
           <div id="details">
             <div id="qr">
@@ -94,6 +94,8 @@ function App() {
 
   const [selecting, setSelecting] = useState(false);
   const [selectionBox, setSelectionBox] = useState<SelectionBox | null>(null);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleMouseUpDocument = () => {
@@ -159,8 +161,19 @@ function App() {
             )}
             <Desktop />
             {applicationsState.applications.map((key: Application, idx: number) => {
-              const WinApp = (Applications as ApplicationComponents)[key.name.replace(/ /g, '')];
-              return <WinApp key={idx} />;
+              const componentName = key.name.replace(/ /g, '');
+              const WinApp = (Applications as ApplicationComponents)[componentName];
+
+              if (WinApp) {
+                return <WinApp key={idx} />;
+              } else {
+                console.error(`App ${key.name} not found. It's probably not implemented yet.`);
+                dispatch({
+                  type: "CLOSE_APPLICATION",
+                  payload: key.id
+                });
+                return null;
+              }
             })}
             <SidePane />
             <BandPane />
