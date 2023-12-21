@@ -88,9 +88,12 @@ interface ApplicationComponents {
   [key: string]: React.ComponentType<any>; // eslint-disable-line
 }
 
+const MIN_OPACITY = 0.30;
+
 function App() {
 
   const applicationsState = useSelector((state: RootState) => state.applications);
+  const sidepaneState = useSelector((state: RootState) => state.sidepane);
 
   const [selecting, setSelecting] = useState(false);
   const [selectionBox, setSelectionBox] = useState<SelectionBox | null>(null);
@@ -141,6 +144,12 @@ function App() {
 
   return (
     <div className="App">
+      <div className="absolute inset-0 bg-black z-50 pointer-events-none"
+        style={{
+          // set opacity reverse to  sidepane.brightness (0-1), min value is 0.15
+          opacity: 1 - ((sidepaneState.brightness as number) / 100) - MIN_OPACITY,
+        }}
+      ></div>
       <ErrorBoundary FallbackComponent={ErrorFallback}>
         <div className="appwrap">
           <Background />
