@@ -46,7 +46,7 @@ async function scrapeAndSave(repositories) {
   }
 
   try {
-    await fs.writeFile('./public/repos.json', JSON.stringify(scrapedData, null, 2));
+    await fs.writeFile('./src/containers/applications/apps/assets/repos.json', JSON.stringify(scrapedData, null, 2));
     console.log('Scraped data saved to scrapedData.json');
   } catch (error) {
     console.error('Error writing to file:', error);

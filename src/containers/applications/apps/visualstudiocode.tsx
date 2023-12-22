@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-import reposData from '../../../../public/repos.json';
+import reposData from './assets/repos.json';
 
 interface DirectoryItem {
     name: string;
