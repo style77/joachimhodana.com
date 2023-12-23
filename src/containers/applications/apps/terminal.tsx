@@ -156,7 +156,9 @@ export const Terminal = () => {
                 const tdir = dirFolders();
                 tmpStack.push(` Volume in drive C is system`);
                 tmpStack.push(` Volume Serial Number is ${getRandomSerialNumber()}`);
+                tmpStack.push("")
                 tmpStack.push(` Directory of ${pwd}`);
+                tmpStack.push("")
 
                 tdir.forEach((folder: string) => {
                     const date = getRandomDate().replace(",", "").split(" ");
