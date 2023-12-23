@@ -62,7 +62,6 @@ export const Icon = (props: IconProps) => {
             >
                 <CustomIcon
                     // @ts-expect-error This is a custom icon component
-                    className={props.className}
                     style={{
                         width: props.width || 24,
                         height: props.height || props.width || 24,
