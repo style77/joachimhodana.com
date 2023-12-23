@@ -77,11 +77,15 @@ export const Terminal = () => {
 
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        getIPDetails();
+    });
+
     if (!wnapp) {
         return null;
     }
 
-    let IpDetails: IPData[] = [];
+    const IpDetails: IPData[] = [];
     const getIPDetails = async () => {
         try {
             const response = await fetch("https://ipapi.co/json")
@@ -101,13 +105,14 @@ export const Terminal = () => {
     };
 
     const dirFolders = (isFile = "") => {
-        var tdir: {
-            [key: string]: any;
-        } = { ...dirs },
-            curr = pwd == "C:\\" ? [] : pwd.replace("C:\\", "").split("\\");
+        let tdir: {
+            [key: string]: any;  // eslint-disable-line @typescript-eslint/no-explicit-any
+        } = { ...dirs }
+
+        const curr = pwd == "C:\\" ? [] : pwd.replace("C:\\", "").split("\\");
 
         if (pwd != "C:\\") {
-            for (var i = 0; i < curr.length; i++) {
+            for (let i = 0; i < curr.length; i++) {
                 tdir = tdir[curr[i]];
             }
         }
@@ -118,6 +123,26 @@ export const Terminal = () => {
             return tdir[isFile] || {};
         }
     };
+
+    function getRandomSerialNumber() {
+        return Math.floor(Math.random() * 10000).toString(16).toUpperCase().padStart(4, '0');
+    }
+
+    function getRandomDate() {
+        const start = new Date(1970, 1, 1);
+        const end = new Date();
+        const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+
+        const options: Intl.DateTimeFormatOptions = {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true
+        };
+        return randomDate.toLocaleString(undefined, options);
+    }
 
     const cmdTool = async (cmd: string) => {
         const tmpStack = [...stack];
@@ -152,7 +177,7 @@ export const Terminal = () => {
                     tmpStack.push("The directory name is invalid.");
                 }
                 break;
-            case "dir":
+            case "dir": {
                 const tdir = dirFolders();
                 tmpStack.push(` Volume in drive C is system`);
                 tmpStack.push(` Volume Serial Number is ${getRandomSerialNumber()}`);
@@ -172,34 +197,15 @@ export const Terminal = () => {
 
                     tmpStack.push(`${date[0]}  ${date[1]}    ${file_type === "<DIR>" ? file_type : file_type.padEnd(5)}  ${folder}`);
                 });
-
-                function getRandomSerialNumber() {
-                    return Math.floor(Math.random() * 10000).toString(16).toUpperCase().padStart(4, '0');
-                }
-
-                function getRandomDate() {
-                    const start = new Date(1970, 1, 1);
-                    const end = new Date();
-                    const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-
-                    const options: Intl.DateTimeFormatOptions = {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true
-                    };
-                    return randomDate.toLocaleString(undefined, options);
-                }
                 break;
+            }
             case "cls":
                 tmpStack.splice(0, tmpStack.length);
                 break
-            case "color":
+            case "color": {
                 let color = "#FFFFFF";
                 let background = "#000000";
-                let re = /^[A-Fa-f0-9]+$/g;
+                const re = /^[A-Fa-f0-9]+$/g;
                 if (arg && (arg.length < 3 && re.test(arg))) {
                     if (arg.length == 2) {
                         color = colorCode(arg[1]);
@@ -208,7 +214,7 @@ export const Terminal = () => {
                         color = colorCode(arg[0]);
                     }
 
-                    var cmdcont = document.getElementById("cmdcont");
+                    const cmdcont = document.getElementById("cmdcont");
                     if (!cmdcont) {
                         return;
                     }
@@ -219,6 +225,7 @@ export const Terminal = () => {
                     tmpStack.push(...COLOR_INFO);
                 }
                 break;
+            }
             case "date":
                 tmpStack.push("The current date is: " + new Date().toLocaleDateString());
                 break;
@@ -247,7 +254,7 @@ export const Terminal = () => {
             case "help":
                 tmpStack.push(...HELP);
                 break;
-            case "ipconfig":
+            case "ipconfig": {
                 const IP = IpDetails[0];
                 tmpStack.push("Windows IP Configuration");
                 tmpStack.push("");
@@ -258,22 +265,23 @@ export const Terminal = () => {
                 tmpStack.push("Region: " + IP.region);
                 tmpStack.push("Postal: " + IP.postal);
                 break;
+            }
             case "ver":
                 tmpStack.push("Microsoft Windows [Version 10.0.22000.51]");
                 break;
-            case "cat":
-                var errp = true;
+            case "cat": {
+                let errp = true;
 
                 if (arg.includes(".")) {
                     const tdir = dirFolders();
 
-                    for (var i = 0; i < tdir.length; i++) {
+                    for (let i = 0; i < tdir.length; i++) {
                         if (arg.toLowerCase() == tdir[i].toLowerCase() && errp) {
                             errp = false;
-                            var file = dirFolders(tdir[i]);
-                            var content = file.content || "";
+                            const file = dirFolders(tdir[i]);
+                            let content = file.content || "";
                             content = content.split("\n");
-                            for (var i = 0; i < content.length; i++) {
+                            for (let i = 0; i < content.length; i++) {
                                 tmpStack.push(content[i]);
                             }
                             break;
@@ -285,6 +293,7 @@ export const Terminal = () => {
                     tmpStack.push(`cat: ${arg.toLowerCase()}: No such file or directory`);
                 }
                 break;
+            }
             default:
                 tmpStack.push(
                     `'${type}' is not recognized as an internal or external command,`,
@@ -435,10 +444,6 @@ export const Terminal = () => {
             }
         }
     };
-
-    useEffect(() => {
-        getIPDetails();
-    });
 
     return (
         <div
