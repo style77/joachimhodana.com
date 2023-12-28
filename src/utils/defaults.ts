@@ -111,7 +111,16 @@ const apps: {
         "window": {
             "title": "Mullvad",
         },
-    }
+    },
+    "PDFViewer": {
+        "name": "PDF Viewer",
+        "icon": "pdf",
+        "type": "app",
+        "id": "PDFViewer",
+        "window": {
+            "title": "PDF Viewer",
+        },
+    },
 }
 
 export type File = {
@@ -123,17 +132,6 @@ export type File = {
 const files: {
     [key: string]: File;
 } = {
-    "Hello": {
-        "name": "hello.txt",
-        "icon": "notepad",
-        "type": "file",
-        "id": "Notepad",
-        "window": {
-            "title": "hello.txt",
-        },
-        "fileType": "text",
-        "content": "Hello World!\n\nThis is my personal portfolio made in Windows 11 style.\n\nI hope you like it!\n\n\n\ncontact: stylek777@gmail.com or me@joachimhodana.com",
-    },
     "Interviewer": {
         "name": "for interviewer.txt",
         "icon": "notepad",
@@ -153,8 +151,19 @@ If you want to see my projects in action, open Browser and just choose project f
 
 
 
-contact: stylek777@gmail.com or me@joachimhodana.com`,
-    }
+contact: me@joachimhodana.com`,
+    },
+    "CV": {
+        "name": "CV.pdf",
+        "icon": "pdf",
+        "type": "file",
+        "id": "PDFViewer",
+        "window": {
+            "title": "CV.pdf",
+        },
+        "fileType": "pdf",
+        "content": "https://joachimhodana.com/CV.pdf",
+    },
 }
 
 const appsAndFiles = {
@@ -179,8 +188,8 @@ const { taskbarApps, desktopApps } = {
         apps.VisualStudioCode,
         apps.Terminal,
         apps.Calculator,
-        files.Hello,
         files.Interviewer,
+        files.CV,
     ]
 }
 
