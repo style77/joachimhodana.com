@@ -199,6 +199,9 @@ export const Terminal = () => {
                 });
                 break;
             }
+            case "glomb":
+                tmpStack.push("https://github.com/th11n")
+                break
             case "cls":
                 tmpStack.splice(0, tmpStack.length);
                 break
