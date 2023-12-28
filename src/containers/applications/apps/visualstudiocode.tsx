@@ -19,16 +19,15 @@ interface DirectoryItem {
 
 const extToLanguage = (ext: string[]) => {
     const extension: string = ext[ext.length - 1];
-    console.log(extension)
     switch (extension) {
         case 'js':
             return 'javascript';
         case 'ts':
             return 'typescript';
         case 'tsx':
-            return 'typescript';
+            return 'tsx';
         case 'jsx':
-            return 'javascript';
+            return 'jsx';
         case 'py':
             return 'python';
         case 'md':
@@ -39,14 +38,14 @@ const extToLanguage = (ext: string[]) => {
             return 'css';
         case 'scss':
             return 'scss';
-        case 'json':
-            return 'json';
         case 'yml':
             return 'yaml';
         case 'yaml':
             return 'yaml';
         case 'sh':
             return 'bash';
+        case 'go':
+            return 'go';
         default:
             return 'text';
     }
@@ -77,7 +76,11 @@ export const VisualStudioCode = () => {
     const workspaces: string[] = [
         "joachimhodana.com",
         "newsltr",
-        "dealscan"
+        "dealscan",
+        "streamx",
+        "insightguard",
+        "quantex",
+        "darkangel"
     ]
 
     if (!wnapp) {
