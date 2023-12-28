@@ -7,6 +7,8 @@ async function fetchContents(url) {
     const contents = [];
 
     for (const item of response.data) {
+      console.log(`Fetching ${item.path}`)
+
       const contentItem = {
         name: item.name,
         type: item.type === 'dir' ? 'dir' : 'file',
@@ -17,7 +19,8 @@ async function fetchContents(url) {
         const subContents = await fetchContents(item.url);
         contentItem.children = subContents;
       } else {
-        const fileResponse = await axios.get(item.download_url);
+        const fileResponse = await axios.get(item.download_url, {
+        });
         contentItem.content = fileResponse.data;
       }
 
@@ -41,6 +44,8 @@ async function scrapeAndSave(repositories) {
   const scrapedData = {};
 
   for (const { user, repository } of repositories) {
+    console.log(`Scraping ${user}/${repository}`)
+
     const allContents = await getAllContents(user, repository);
     scrapedData[`${repository}`] = allContents;
   }
@@ -55,8 +60,12 @@ async function scrapeAndSave(repositories) {
 
 const repositoriesToScrape = [
   { user: 'style77', repository: 'newsltr' },
-  { user: 'style77', repository: 'joachimhodana.com' },
   { user: 'style77', repository: 'dealscan' },
+  { user: 'style77', repository: 'streamx' },
+  { user: 'style77', repository: 'insightguard' },
+  { user: 'style77', repository: 'quantex' },
+  { user: 'style77', repository: 'joachimhodana.com' },
+  { user: 'style77', repository: 'darkangel'}
 ];
 
 scrapeAndSave(repositoriesToScrape);
