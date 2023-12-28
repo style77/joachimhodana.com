@@ -202,6 +202,15 @@ export const Terminal = () => {
             case "glomb":
                 tmpStack.push("https://github.com/th11n")
                 break
+            case "spioszek":
+                tmpStack.push("Oliwier wstawaj do szkoły :D")
+                break
+            case "samedi":
+                tmpStack.push("❤")
+                break
+            case "niepij":
+                tmpStack.push("Kuba prosze nie pij")
+                break
             case "cls":
                 tmpStack.splice(0, tmpStack.length);
                 break
