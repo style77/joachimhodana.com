@@ -3,7 +3,7 @@ const easterEggWallpapers = [
 ]
 
 const wallpapers = [
-    "default.jpg"
+    "default.avif"
 ]
 
 const getDefaultWallpaper = () => {
