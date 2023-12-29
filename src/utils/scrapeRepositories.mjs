@@ -1,9 +1,16 @@
 import axios from 'axios';
 import fs from 'fs/promises';
 
+const MAX_SIZE = 20000;
+const PAT = "";  // Personal Access Token with repo access
+
 async function fetchContents(url) {
   try {
-    const response = await axios.get(url);
+    const response = await axios.get(url, {
+      headers: {
+        'Authorization': `Bearer ${PAT}`
+      }
+    });
     const contents = [];
 
     for (const item of response.data) {
@@ -19,7 +26,16 @@ async function fetchContents(url) {
         const subContents = await fetchContents(item.url);
         contentItem.children = subContents;
       } else {
+        console.log(item.name, item.size)
+        if (item.size >= MAX_SIZE) {
+          console.log(`Skipping ${item.path} because it's too large`);
+          continue;
+        }
+
         const fileResponse = await axios.get(item.download_url, {
+          headers: {
+            'Authorization': `Bearer ${PAT}`
+          }
         });
         contentItem.content = fileResponse.data;
       }
