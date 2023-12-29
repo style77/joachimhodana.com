@@ -91,7 +91,7 @@ export const VisualStudioCode = () => {
         return (
             <ul>
                 {items.map((item: DirectoryItem, index: number) => (
-                    <li key={index} className="cursor-pointer" style={{
+                    <li key={index} className={`cursor-pointer ${selectedFile?.name === item.name && 'selectedItem'}`} style={{
                         paddingLeft: `${pl}px`,
                     }} onClick={() => item.type !== 'dir' && item && setSelectedFile(item)}>
                         {item.type === 'dir' ? (
