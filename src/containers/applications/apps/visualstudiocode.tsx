@@ -102,6 +102,11 @@ export const VisualStudioCode = () => {
                                         fafa={`${expandedDirs[`${basePath}/${item.name}`] ? "faChevronDown" : "faChevronRight"}`}
                                         width={10}
                                     />
+                                    <Icon
+                                        className="font-thin explorerItemText"
+                                        allIcons
+                                        src={`${expandedDirs[`${basePath}/${item.name}`] ? "folderOpenedVsc" : "folderVsc"}`}
+                                    />
                                     <div className="explorerItemText text-sm font-thin text-ellipsis">{item.name}</div>
                                 </div>
                                 {expandedDirs[`${basePath}/${item.name}`] && (
@@ -109,7 +114,14 @@ export const VisualStudioCode = () => {
                                 )}
                             </div>
                         ) : (
-                            <div className="explorerItemText text-sm font-thin text-ellipsis">{item.name}</div>
+                            <div className="explorerItemText text-sm font-thin text-ellipsis flex-row flex">
+                                <Icon
+                                        className="font-thin explorerItemText mx-0.5"
+                                        allIcons
+                                        src="fileVsc"
+                                    />
+                                {item.name}
+                            </div>
                         )}
                     </li>
                 ))}
