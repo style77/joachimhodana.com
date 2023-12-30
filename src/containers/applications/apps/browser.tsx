@@ -64,6 +64,11 @@ export const Browser = () => {
             name: "Joachim Hodana",
             protocol: "https",
             host: "joachimhodana.com",
+        },
+        {
+            name: "Dealscan",
+            protocol: "https",
+            host: "dealscan.joachimhodana.com",
         }
     ]
 
