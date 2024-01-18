@@ -81,8 +81,8 @@ const repositoriesToScrape = [
   { user: 'style77', repository: 'insightguard' },
   { user: 'style77', repository: 'quantex' },
   { user: 'style77', repository: 'joachimhodana.com' },
-  { user: 'style77', repository: 'darkangel'},
-  { user: 'style77', repository: 'rtTranslator'}
+  { user: 'style77', repository: 'darkangel' },
+  { user: 'style77', repository: 'rtTranslator' }
 ];
 
 scrapeAndSave(repositoriesToScrape);
