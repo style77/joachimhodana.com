@@ -80,7 +80,8 @@ export const VisualStudioCode = () => {
         "streamx",
         "insightguard",
         "quantex",
-        "darkangel"
+        "darkangel",
+        "rtTranslator"
     ]
 
     if (!wnapp) {
