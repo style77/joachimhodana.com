@@ -1,11 +1,17 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "targetDefaults": {},
+  "targetDefaults": {
+    "build": {
+      "executor": "@nx/vite:build"
+    } 
+  },
   "defaultBase": "master",
   "plugins": [
     {
       "plugin": "@nx/eslint/plugin",
-      "options": { "targetName": "eslint:lint" }
+      "options": {
+        "targetName": "eslint:lint"
+      }
     },
     {
       "plugin": "@nx/vite/plugin",
@@ -27,9 +33,15 @@
         "linter": "eslint",
         "bundler": "vite"
       },
-      "component": { "style": "tailwind" },
-      "library": { "style": "tailwind", "linter": "eslint" }
+      "component": {
+        "style": "tailwind"
+      },
+      "library": {
+        "style": "tailwind",
+        "linter": "eslint"
+      }
     }
   },
-  "nxCloudId": "670dba5622b1a18844d394bb"
+  "nxCloudId": "670dba5622b1a18844d394bb",
+  "useLegacyCache": true
 }
