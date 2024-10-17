@@ -22,17 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-.DS_Store
-node_modules
-.turbo
-*.log
-dist
-dist-ssr
-*.local
-.env
-.cache
-server/dist
-public/dist
-
-.turbo
