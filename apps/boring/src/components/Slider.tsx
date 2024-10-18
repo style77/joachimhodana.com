@@ -20,7 +20,7 @@ const LOGOS = [
 
 export default function Slider() {
   return (
-    <div className="relative py-4 m-auto w-8/12 overflow-hidden before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-full before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-full after:-scale-x-100 after:content-['']">
+    <div className="relative py-4 m-auto w-full lg:w-8/12 overflow-hidden before:absolute before:left-0 before:top-0 before:z-[2] before:h-full before:w-full before:content-[''] after:absolute after:right-0 after:top-0 after:z-[2] after:h-full after:w-full after:-scale-x-100 after:content-['']">
       <div className="animate-infinite-slider flex w-[calc(250px*10)]">
         {LOGOS.map((logo, index) => (
           <div
