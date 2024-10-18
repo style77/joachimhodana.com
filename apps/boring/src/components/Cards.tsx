@@ -44,7 +44,7 @@ export default function Cards() {
                         {icon}
                         <span className="mt-5">
                             <span className="hs-tab-active:text-blue-600 block font-semibold text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200">{label}</span>
-                            <span className="hidden mt-2 text-gray-800 dark:text-neutral-200 lg:text-base text-xs">{description}</span>
+                            <span className="hidden lg:block mt-2 text-gray-800 dark:text-neutral-200 lg:text-base text-xs">{description}</span>
                         </span>
                     </div>
                 ))}
