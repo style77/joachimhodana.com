@@ -30,7 +30,7 @@ export default function Cards() {
 
     return (
         <div className="max-w-[90rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto" id="services">
-            <nav className="grid grid-cols-2 gap-4 md:grid-cols-4" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
+            <div className="grid grid-cols-2 gap-4 md:grid-cols-4" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
                 {cardData.map(({ id, label, description, icon }, index) => (
                     <div
                         key={id}
@@ -48,7 +48,18 @@ export default function Cards() {
                         </span>
                     </div>
                 ))}
-            </nav>
+            </div>
+            <div className="flex flex-col justify-center items-center w-full mt-6">
+                <h2 className="text-sm font-regular text-center text-neutral-300">
+                    Cannot find what you're looking for? Let's connect and discuss your project!
+                </h2>
+                <a
+                    href="#contact"
+                    className="text-neutral-200 w-full mt-2 text-center text-xl font-semibold"
+                >
+                    Contact
+                </a>
+            </div>
         </div>
     );
 }       
