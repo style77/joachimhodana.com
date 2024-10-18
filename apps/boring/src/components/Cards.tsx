@@ -5,7 +5,7 @@ export default function Cards() {
         {
             id: "tabs-with-card-item-1",
             label: "Full Stack Development",
-            description: "Crafting responsive and engaging websites tailored to your business needs. Comprehensive solutions from front-end to back-end.",
+            description: "Developing responsive and engaging websites tailored to your business needs. Comprehensive solutions from front-end to back-end.",
             icon: <MdOutlineCode className="shrink-0 text-gray-800 dark:text-white" size={24} />,
         },
         {
@@ -29,7 +29,7 @@ export default function Cards() {
     ];
 
     return (
-        <div className="max-w-[90rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        <div className="max-w-[90rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto" id="services">
             <nav className="grid grid-cols-2 gap-4 md:grid-cols-4" aria-label="Tabs" role="tablist" aria-orientation="horizontal">
                 {cardData.map(({ id, label, description, icon }, index) => (
                     <div
@@ -44,7 +44,7 @@ export default function Cards() {
                         {icon}
                         <span className="mt-5">
                             <span className="hs-tab-active:text-blue-600 block font-semibold text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200">{label}</span>
-                            <span className="hidden lg:block mt-2 text-gray-800 dark:text-neutral-200">{description}</span>
+                            <span className="hidden mt-2 text-gray-800 dark:text-neutral-200 lg:text-base text-xs">{description}</span>
                         </span>
                     </div>
                 ))}
