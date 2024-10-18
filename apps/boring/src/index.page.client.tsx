@@ -17,6 +17,5 @@ function render(pageContext: { Page: () => JSX.Element }) {
             </>
         );
     } else {
-        console.error('No root element found.');
     }
 }
