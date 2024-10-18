@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { FaWindows } from "react-icons/fa";
 
 export default function Navbar() {
     return (
@@ -23,18 +24,24 @@ export default function Navbar() {
                     CV
                 </motion.a>
             </div>
-            <motion.div
-                initial={{ opacity: "0" }}
-                animate={{ opacity: "1" }}
-                transition={{ ease: "easeOut", duration: 2 }}
-                className="flex flex-row gap-3 text-gray-300"
-            >
-                <a href="https://github.com/style77" className="hover:text-gray-200">Github</a>
-                <p className="text-gray-500">/</p>
-                <a href="https://linkedin.com/in/joachim-hodana" className="hover:text-gray-200">Linkedin</a>
-                <p className="text-gray-500">/</p>
-                <a href="https://linktr.ee/joachimhodana" className="hover:text-gray-200">Linktree</a>
-            </motion.div>
+            <div className="flex flex-col gap-2">
+                <motion.div
+                    initial={{ opacity: "0" }}
+                    animate={{ opacity: "1" }}
+                    transition={{ ease: "easeOut", duration: 2 }}
+                    className="flex flex-row gap-3 text-gray-300"
+                >
+                    <a href="https://github.com/style77" className="hover:text-gray-200">Github</a>
+                    <p className="text-gray-500">/</p>
+                    <a href="https://linkedin.com/in/joachim-hodana" className="hover:text-gray-200">Linkedin</a>
+                    <p className="text-gray-500">/</p>
+                    <a href="https://linktr.ee/joachimhodana" className="hover:text-gray-200">Linktree</a>
+                </motion.div>
+                <a href="https://win.joachimhodana.com/" className="self-end text-gray-300 hover:text-gray-200">
+                    <FaWindows size={24} />
+                    <span className="sr-only">Interactive Portfolio</span>
+                </a>
+            </div>
         </div>
     );
 }
