@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Slider from "./components/Slider";
 import Cards from "./components/Cards";
-import Projects from "./components/Projects";
+// import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
