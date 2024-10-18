@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
-import { FaQuestion, FaRegEnvelopeOpen } from "react-icons/fa";
-import { MdArticle, MdEditCalendar, MdOutlineArticle, MdOutlineEditCalendar, MdOutlineMail, MdOutlineQuestionMark } from "react-icons/md";
+import { FaRegEnvelopeOpen } from "react-icons/fa";
+import { MdArticle, MdEditCalendar, MdOutlineArticle, MdOutlineEditCalendar, MdOutlineMail } from "react-icons/md";
 
 type Result = {
     status: string;
