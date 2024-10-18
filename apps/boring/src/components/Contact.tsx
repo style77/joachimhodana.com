@@ -1,6 +1,6 @@
-import { FormEvent, useState } from "react";
-import { FaRegEnvelopeOpen } from "react-icons/fa";
-import { MdEditCalendar, MdOutlineQuestionMark } from "react-icons/md";
+import { FormEvent, useEffect, useState } from "react";
+import { FaQuestion, FaRegEnvelopeOpen } from "react-icons/fa";
+import { MdArticle, MdEditCalendar, MdOutlineArticle, MdOutlineEditCalendar, MdOutlineMail, MdOutlineQuestionMark } from "react-icons/md";
 
 type Result = {
     status: string;
@@ -14,6 +14,25 @@ export default function Contact() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const [result, setResult] = useState<Result>();
+
+    const [messagePlaceholder, setMessagePlaceholder] = useState("Tell me about your project");
+
+    useEffect(() => {
+        const updatePlaceholder = () => {
+            if (window.innerWidth < 768) {
+                setMessagePlaceholder("Message");
+            } else {
+                setMessagePlaceholder("Tell me about your project");
+            }
+        };
+
+        updatePlaceholder(); // Set initial placeholder based on current window size
+        window.addEventListener('resize', updatePlaceholder); // Update on resize
+
+        return () => {
+            window.removeEventListener('resize', updatePlaceholder); // Cleanup on unmount
+        };
+    }, []);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -64,31 +83,40 @@ export default function Contact() {
     return (
         <div className="flex flex-col items-center justify-center w-full mt-14 gap-2">
             <h1 className="font-bold text-4xl relative after:absolute after:w-full after:border-t-[3px] after:border-t-red-500 after:h-2 after:rounded-[50%] after:left-0 after:bottom-[-14px] after:content-['']">Contact me</h1>
-            <div className="flex flex-row w-1/2 justify-center py-12">
-                <div className="flex flex-col w-1/2 gap-6">
+            <div className="flex flex-row lg:w-1/2 justify-between gap-4 lg:gap-0 mx-8 lg:mx-0 py-12">
+                <div className="flex flex-col lg:w-1/2 gap-6">
                     <div className="flex flex-row gap-2">
-                        <FaRegEnvelopeOpen className="text-gray-700" size={22} />
+                        <FaRegEnvelopeOpen className="text-gray-700 hidden lg:block" size={22} />
+                        <MdOutlineMail className="text-gray-700 block lg:hidden" size={22} />
                         <div className="flex flex-col">
-                            <h1 className="font-semibold text-lg text-gray-100">Email me</h1>
-                            <a className="text-gray-400 font-light underline" href="mailto:me@joachimhodana.com">me@joachimhodana.com</a>
+                            <h1 className="font-semibold text-lg text-gray-100 hidden lg:block">Contact me</h1>
+                            <h1 className="font-semibold text-lg text-gray-100 block lg:hidden">Email</h1>
+                            <a className="text-gray-400 font-light underline text-xs lg:text-base hidden lg:block" href="mailto:me@joachimhodana.com">me@joachimhodana.com</a>
+                            <a className="text-gray-400 font-light underline text-xs lg:text-base block lg:hidden" href="mailto:me@joachimhodana.com">Contact me</a>
                         </div>
                     </div>
                     <div className="flex flex-row gap-2">
-                        <MdOutlineQuestionMark className="text-gray-700" size={25} />
+                        <MdArticle className="text-gray-700 hidden lg:block" size={22} />
+                        <MdOutlineArticle className="text-gray-700 block lg:hidden" size={22} />
                         <div className="flex flex-col">
-                            <h1 className="font-semibold text-lg text-gray-100">Check out my blog</h1>
-                            <a className="text-gray-400 font-light underline" href="https://medium.com/@joachimhodana">See my articles on Medium</a>
+                            <h1 className="font-semibold text-lg text-gray-100 hidden lg:block">Check out my Blog</h1>
+                            <h1 className="font-semibold text-lg text-gray-100 block lg:hidden">Blog</h1>
+                            <a className="text-gray-400 font-light underline text-xs lg:text-base hidden lg:block" href="https://medium.com/@joachimhodana">See my articles on Medium</a>
+                            <a className="text-gray-400 font-light underline text-xs lg:text-base block lg:hidden" href="https://medium.com/@joachimhodana">Medium</a>
                         </div>
                     </div>
                     <div className="flex flex-row gap-2">
-                        <MdEditCalendar className="text-gray-700" size={25} />
+                        <MdEditCalendar className="text-gray-700 hidden lg:block" size={25} />
+                        <MdOutlineEditCalendar className="text-gray-700 block lg:hidden" size={25} />
                         <div className="flex flex-col">
-                            <h1 className="font-semibold text-lg text-gray-100">Let's talk about your idea</h1>
-                            <a className="text-gray-400 font-light underline" href="https://calendly.com/hodanajoachim/30min">Book a short call</a>
+                            <h1 className="font-semibold text-lg text-gray-100 hidden lg:block">Let's talk about your idea</h1>
+                            <h1 className="font-semibold text-lg text-gray-100 block lg:hidden">Meet</h1>
+                            <a className="text-gray-400 font-light underline text-xs lg:text-base hidden lg:block" href="https://calendly.com/hodanajoachim/30min">Book a short call</a>
+                            <a className="text-gray-400 font-light underline text-xs lg:text-base block lg:hidden" href="https://calendly.com/hodanajoachim/30min">Calendly</a>
                         </div>
                     </div>
                 </div>
-                <div className="w-1/2">
+                <div className="w-full flex-1">
                     <form onSubmit={handleSubmit}>
                         <div className="space-y-4">
                             <div className="relative">
@@ -139,7 +167,7 @@ export default function Contact() {
             peer-focus:text-neutral-400
             peer-[:not(:placeholder-shown)]:text-xs
             peer-[:not(:placeholder-shown)]:-translate-y-1.5
-            peer-[:not(:placeholder-shown)]:text-neutral-400">Tell me about your project</label>
+            peer-[:not(:placeholder-shown)]:text-neutral-400">{messagePlaceholder}</label>
                             </div>
                         </div>
 
