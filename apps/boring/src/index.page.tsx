@@ -6,7 +6,9 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
-function App() {
+export { Page }
+
+function Page() {
   return (
     <div className="relative">
       <div className="noise-bg absolute inset-0 z-[1]" aria-hidden="true">
@@ -38,5 +40,3 @@ function App() {
     </div>
   )
 }
-
-export default App
