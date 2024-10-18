@@ -6,25 +6,25 @@ export default function Cards() {
             id: "tabs-with-card-item-1",
             label: "Full Stack Development",
             description: "Developing responsive and engaging websites tailored to your business needs. Comprehensive solutions from front-end to back-end.",
-            icon: <MdOutlineCode className="shrink-0 text-gray-800 dark:text-white" size={24} />,
+            icon: <MdOutlineCode className="shrink-0 text-white" size={24} />,
         },
         {
             id: "tabs-with-card-item-2",
             label: "MVP Development",
             description: "Building and launching your product idea with a minimum viable product approach.",
-            icon: <MdOutlinePersonAdd className="shrink-0 text-gray-800 dark:text-white" size={24} />,
+            icon: <MdOutlinePersonAdd className="shrink-0 text-white" size={24} />,
         },
         {
             id: "tabs-with-card-item-3",
             label: "IT Consulting",
             description: "Providing expert advice on software architecture, development, and deployment.",
-            icon: <MdBusinessCenter className="shrink-0 text-gray-800 dark:text-white" size={24} />,
+            icon: <MdBusinessCenter className="shrink-0 text-white" size={24} />,
         },
         {
             id: "tabs-with-card-item-4",
             label: "Cloud Services",
             description: "Simplifying deployment with efficient cloud serverless architectures.",
-            icon: <MdOutlineCloud className="shrink-0 text-gray-800 dark:text-white" size={24} />,
+            icon: <MdOutlineCloud className="shrink-0 text-white" size={24} />,
         },
     ];
 
@@ -34,7 +34,7 @@ export default function Cards() {
                 {cardData.map(({ id, label, description, icon }, index) => (
                     <div
                         key={id}
-                        className={`border-2 border-gray-700 bg-gray-700/25 flex flex-col text-start p-3 md:p-5 rounded-xl dark:hs-tab-active:bg-neutral-800 hover:border-red-500 hover:bg-red-500/25 hover:drop-shadow-[0_0_30px_rgba(71,235,235,0.55)] transition duration-300`}
+                        className={`border-2 border-gray-700 bg-gray-700/25 flex flex-col text-start p-3 md:p-5 rounded-xl hs-tab-active:bg-neutral-800 hover:border-red-500 hover:bg-red-500/25 hover:drop-shadow-[0_0_30px_rgba(71,235,235,0.55)] transition duration-300`}
                         id={id}
                         aria-selected={index === 0}
                         data-hs-tab={`#${id}`}
@@ -43,8 +43,8 @@ export default function Cards() {
                     >
                         {icon}
                         <span className="mt-5">
-                            <span className="hs-tab-active:text-blue-600 block font-semibold text-gray-800 dark:hs-tab-active:text-blue-500 dark:text-neutral-200">{label}</span>
-                            <span className="hidden lg:block mt-2 text-gray-800 dark:text-neutral-200 lg:text-sm text-xs">{description}</span>
+                            <span className="hs-tab-active:text-blue-600 block font-semibold hs-tab-active:text-blue-500 text-neutral-200">{label}</span>
+                            <span className="hidden lg:block mt-2 text-neutral-200 lg:text-sm text-xs">{description}</span>
                         </span>
                     </div>
                 ))}
