@@ -81,7 +81,7 @@ export default function Contact() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-full mt-14 gap-2">
+        <div className="flex flex-col items-center justify-center w-full mt-14 gap-2" id="contact">
             <h1 className="font-bold text-4xl relative after:absolute after:w-full after:border-t-[3px] after:border-t-red-500 after:h-2 after:rounded-[50%] after:left-0 after:bottom-[-14px] after:content-['']">Contact me</h1>
             <div className="flex flex-row lg:w-1/2 justify-between gap-4 lg:gap-0 mx-8 lg:mx-0 py-12">
                 <div className="flex flex-col lg:w-1/2 gap-6">
