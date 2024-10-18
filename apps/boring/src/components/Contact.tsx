@@ -1,6 +1,4 @@
-import { BiCalendarPlus } from "react-icons/bi";
 import { FaRegEnvelopeOpen } from "react-icons/fa";
-import { LuMegaphone } from "react-icons/lu";
 import { MdEditCalendar, MdOutlineQuestionMark } from "react-icons/md";
 
 export default function Contact() {
