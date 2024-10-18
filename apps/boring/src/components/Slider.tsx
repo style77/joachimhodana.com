@@ -1,10 +1,6 @@
-import { FaDocker, FaFigma, FaPython, FaSnowflake } from "react-icons/fa";
-import { SiVisualstudiocode } from "react-icons/si";
-import { SiAdobephotoshop } from "react-icons/si";
+import { FaDocker, FaPython, FaSnowflake } from "react-icons/fa";
 import { RiNextjsFill } from "react-icons/ri";
 import { FaReact } from "react-icons/fa";
-import { DiMongodb } from "react-icons/di";
-import { SiMysql } from "react-icons/si";
 import { BiLogoTailwindCss } from "react-icons/bi";
 import { FaGithub } from "react-icons/fa";
 import { FaGolang } from "react-icons/fa6";
