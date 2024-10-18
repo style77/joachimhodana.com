@@ -25,7 +25,7 @@ export default function Contact() {
                         <MdEditCalendar className="text-gray-700" size={25} />
                         <div className="flex flex-col">
                             <h1 className="font-semibold text-lg text-gray-100">Let's talk about your idea</h1>
-                            <a className="text-gray-400 font-light underline" href="https://calendly.com/hodanajoachim/30min">Book short call before it's too late</a>
+                            <a className="text-gray-400 font-light underline" href="https://calendly.com/hodanajoachim/30min">Book a short call</a>
                         </div>
                     </div>
                 </div>
