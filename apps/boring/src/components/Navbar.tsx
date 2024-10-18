@@ -14,15 +14,15 @@ export default function Navbar() {
                 >
                     me@joachimhodana.com
                 </motion.a>
-                <motion.a
+                {/* <motion.a
                     initial={{ opacity: "0" }}
                     animate={{ opacity: "1" }}
                     transition={{ ease: "easeOut", duration: 2 }}
                     className="hidden md:flex btn px-12 text-gray-300 rounded-full bg-transparent border-gray-700 border-2 hover:bg-transparent hover:border-gray-500 w-min"
                     href="https://win.joachimhodana.com/CV.pdf"
                 >
-                    CV
-                </motion.a>
+                    Resume
+                </motion.a> */}
             </div>
             <div className="flex flex-col gap-2">
                 <motion.div
