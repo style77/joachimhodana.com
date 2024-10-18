@@ -31,7 +31,7 @@ function Page() {
           <div className="w-full bg-gray-700/25 border-y border-gray-700">
             <Slider />
           </div>
-          <Projects />
+          {/* <Projects /> */}
           <Contact />
           <div className="relative h-px w-10/12 bg-gray-700" />
           <Footer />
